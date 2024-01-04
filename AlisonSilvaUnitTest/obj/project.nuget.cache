@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/oN89zErStWd/5R1ty21sBp9I3jGUeuRk0hsgsa9sHBOnw6HUN8zYsMp0XP8zgVmLlUi+pWrBBHaphGd3HucUw==",
+  "dgSpecHash": "/LZuL4tnwoqtS0ZWC6RSawWrFD4fTSRxvVWGKs3BV41ruwKCGXfb0r2dCgKwEbIr6oeWPkKtwAJ04HgHe1QpOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaUnitTest\\AlisonSilvaUnitTest.csproj",
+  "projectFilePath": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaUnitTest\\AlisonSilvaUnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gustavo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
