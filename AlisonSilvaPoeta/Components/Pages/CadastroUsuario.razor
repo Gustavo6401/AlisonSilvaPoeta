@@ -1,7 +1,15 @@
 ﻿@page "/Usuario/Cadastro"
 
 <div class="justify-content-center align-items-center">
-    <CadastroUsuarioForm></CadastroUsuarioForm>
+    <!--Se ocorrer um erro no Componente CadastroUsuarioForm, a mensagem de erro será exibida.-->
+    <ErrorBoundary>
+        <ChildContent>
+            <CadastroUsuarioForm></CadastroUsuarioForm>
+        </ChildContent>
+        <ErrorContent>
+            <p>Ocorreu um Erro! Contate o administrador do sistema!</p>
+        </ErrorContent>
+    </ErrorBoundary>
 </div>
 
 @code {

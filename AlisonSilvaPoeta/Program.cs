@@ -3,11 +3,21 @@ using AlisonSilvaPoeta.Components;
 using AlisonSilvaPoeta.Interfaces.Repositories;
 using AlisonSilvaPoeta.Interfaces.Services;
 using AlisonSilvaPoeta.Repositories;
+using AlisonSilvaPoeta.Services.Authentication;
 using AlisonSilvaPoeta.Services.Cryptograph;
 using AlisonSilvaPoeta.Services.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(config =>
+    {
+        config.LoginPath = "/Components/Pages/Login.razor";
+        config.AccessDeniedPath = "/Components/Pages/Login.razor";
+        config.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -29,6 +39,7 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
 builder.Services.AddSingleton<Sha512>();
+builder.Services.AddSingleton<LoginServices>();
 
 var app = builder.Build();
 
@@ -44,6 +55,15 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+    HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always
+});
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

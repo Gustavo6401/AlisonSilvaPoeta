@@ -29,8 +29,12 @@ public class UsuarioServices : ServicesBase<UsuarioViewModel, Usuario>, IUsuario
         await Repository.Add(entity);
     }
 
-    public Task<UsuarioViewModel> Login(string email, string senha)
+    public async Task<UsuarioViewModel> Login(string email, string senha)
     {
-        throw new NotImplementedException();
+        senha = Sha512.Criptografar(senha);
+
+        Usuario entity = await Repository.Login(email, senha);
+
+        return Mapper.Map<UsuarioViewModel>(entity);
     }
 }
