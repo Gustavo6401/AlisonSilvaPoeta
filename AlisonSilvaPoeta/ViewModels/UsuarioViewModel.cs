@@ -30,5 +30,5 @@ public class UsuarioViewModel
     public string? RG { get; set; }
     public string? CPF { get; set; }
 
-    public Cliente? Cliente { get; set; }
+    public ClienteViewModel? Cliente { get; set; }
 }

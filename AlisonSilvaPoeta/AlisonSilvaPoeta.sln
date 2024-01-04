@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlisonSilvaPoeta", "AlisonSilvaPoeta.csproj", "{80B59CAC-BB3E-475C-BAD6-7ED149C0B481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlisonSilvaPoeta", "AlisonSilvaPoeta.csproj", "{80B59CAC-BB3E-475C-BAD6-7ED149C0B481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlisonSilvaPoetaTest", "..\AlisonSilvaPoetaTest\AlisonSilvaPoetaTest.csproj", "{CA5F5E1D-D500-4B25-98C4-34234E887E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlisonSilvaPoetaTest", "..\AlisonSilvaPoetaTest\AlisonSilvaPoetaTest.csproj", "{CA5F5E1D-D500-4B25-98C4-34234E887E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlisonSilvaUnitTest", "..\AlisonSilvaUnitTest\AlisonSilvaUnitTest.csproj", "{0F49BD0D-3362-4C18-B102-24BDBA6A7662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlisonSilvaUnitTest", "..\AlisonSilvaUnitTest\AlisonSilvaUnitTest.csproj", "{0F49BD0D-3362-4C18-B102-24BDBA6A7662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

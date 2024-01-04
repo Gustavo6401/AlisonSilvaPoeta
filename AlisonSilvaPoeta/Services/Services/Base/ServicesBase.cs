@@ -14,9 +14,11 @@ public class ServicesBase<T, U> : IServices<T, U> where T : class where U : clas
         Mapper = mapper;
         Repository = repository;
     }
-    public virtual Task Add(T entity)
+    public virtual async Task Add(T entity)
     {
-        throw new NotImplementedException();
+        U data = Mapper.Map<U>(entity);
+
+        await Repository.Add(data);
     }
 
     public Task Delete(int id)
@@ -29,9 +31,11 @@ public class ServicesBase<T, U> : IServices<T, U> where T : class where U : clas
         throw new NotImplementedException();
     }
 
-    public Task<List<T>> GetAll()
+    public virtual async Task<List<T>> GetAll()
     {
-        throw new NotImplementedException();
+        List<U> all = await Repository.All();
+
+        return Mapper.Map<List<T>>(all);
     }
 
     public Task Update(T entity)

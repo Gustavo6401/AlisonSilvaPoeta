@@ -1,5 +1,10 @@
 using AlisonSilvaPoeta;
 using AlisonSilvaPoeta.Components;
+using AlisonSilvaPoeta.Interfaces.Repositories;
+using AlisonSilvaPoeta.Interfaces.Services;
+using AlisonSilvaPoeta.Repositories;
+using AlisonSilvaPoeta.Services.Cryptograph;
+using AlisonSilvaPoeta.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +21,14 @@ builder.Services.AddDbContext<LivrariaContext>(context =>
 builder.Services.AddDbContext<LivrariaContext>(options =>
     options.UseSqlServer(@"Server=(localdb)\\mssqllocaldb;Database=AlisonSilvaPoeta;Trusted_Connection=True"
 ));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
+builder.Services.AddScoped<IClienteServices, ClienteServices>();
+builder.Services.AddSingleton<Sha512>();
 
 var app = builder.Build();
 

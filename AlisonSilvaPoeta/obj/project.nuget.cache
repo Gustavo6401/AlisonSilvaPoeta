@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Hpsm6BFPiTXweMmw1R+y76PSNSf7yQ7lEG3ohB0hexTK9QZyTkX4ZRv+5gFZsIcnUgQcsLRx1BjyPeKjEJcj9g==",
+  "dgSpecHash": "gyk2+gYWKraNnph9Krt6LySfmQ4MlsHPjmo7VeUSiCk6dAMSxz4oCgT+R/57sVbGW3rCqmVVV9UYDLqfPXMqVA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaPoeta\\AlisonSilvaPoeta.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gustavo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Gustavo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
