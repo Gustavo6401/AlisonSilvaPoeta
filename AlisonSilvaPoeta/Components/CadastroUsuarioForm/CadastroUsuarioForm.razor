@@ -1,4 +1,5 @@
-﻿@using AlisonSilvaPoeta.Interfaces.Repositories
+﻿@using AlisonSilvaPoeta.Interfaces.Login
+@using AlisonSilvaPoeta.Interfaces.Repositories
 @using AlisonSilvaPoeta.Interfaces.Services
 @using AlisonSilvaPoeta.Models
 @using AlisonSilvaPoeta.Repositories
@@ -7,6 +8,8 @@
 @inject IUsuarioServices services;
 @inject IClienteRepository clienteRepository;
 @inject IJSRuntime jsRuntime;
+@inject ILoginServices loginServices
+@inject IHttpContextAccessor context
 @rendermode InteractiveServer
 
 <h1>Cadastro de Usuário</h1>

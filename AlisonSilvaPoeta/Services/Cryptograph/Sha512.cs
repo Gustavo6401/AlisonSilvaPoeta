@@ -1,9 +1,10 @@
-﻿using System.Security.Cryptography;
+﻿using AlisonSilvaPoeta.Interfaces.Cryptograph;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace AlisonSilvaPoeta.Services.Cryptograph;
 
-public class Sha512
+public class Sha512 : ISha512
 {
     public string? Criptografar(string texto)
     {

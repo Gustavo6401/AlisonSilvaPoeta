@@ -1,5 +1,7 @@
 using AlisonSilvaPoeta;
 using AlisonSilvaPoeta.Components;
+using AlisonSilvaPoeta.Interfaces.Cryptograph;
+using AlisonSilvaPoeta.Interfaces.Login;
 using AlisonSilvaPoeta.Interfaces.Repositories;
 using AlisonSilvaPoeta.Interfaces.Services;
 using AlisonSilvaPoeta.Repositories;
@@ -7,6 +9,8 @@ using AlisonSilvaPoeta.Services.Authentication;
 using AlisonSilvaPoeta.Services.Cryptograph;
 using AlisonSilvaPoeta.Services.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,18 +32,18 @@ var sqlServerConnection = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<LivrariaContext>(context =>
     context.UseSqlServer(sqlServerConnection));
 
-builder.Services.AddDbContext<LivrariaContext>(options =>
-    options.UseSqlServer(@"Server=(localdb)\\mssqllocaldb;Database=AlisonSilvaPoeta;Trusted_Connection=True"
-));
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
-builder.Services.AddSingleton<Sha512>();
-builder.Services.AddSingleton<LoginServices>();
+builder.Services.AddScoped<ISha512, Sha512>();
+builder.Services.AddScoped<ILoginServices, LoginServices>();
+
+// builder.Services.AddScoped<AuthenticationStateProvider>();
+// builder.Services.AddScoped<NavigationManager>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

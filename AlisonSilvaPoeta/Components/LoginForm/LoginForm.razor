@@ -1,13 +1,48 @@
-﻿<h3>Login</h3>
+﻿@using AlisonSilvaPoeta.Interfaces.Login
+@inject NavigationManager Navigation
+@inject IUsuarioServices services
+@inject ILoginServices loginServices
+@inject IHttpContextAccessor context
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
+
+<h3>Login</h3>
 
 <div class="form-group">
-    <input placeholder="E-Mail" />
+    <input type="email" class="form-control" placeholder="E-Mail" @bind-value="email" />
 </div>
-<div>
-    
-    <input placeholder="Senha" />
+<div class="form-group">    
+    <input type="password" class="form-control" placeholder="Senha" @bind-value="senha" />
+</div>
+<div class="form-group">
+    <button class="btn btn-success" @onclick=CadastroUsuario>Cadastre-se</button>
+    <button class="btn btn-primary" @onclick=FazerLogin>Fazer Login</button>
 </div>
 
 @code {
+    string email = "";
+    string senha = "";
 
+    public void CadastroUsuario()
+    {
+        Navigation.NavigateTo("/Usuario/Cadastro");
+    }
+
+    public async Task FazerLogin()
+    {
+        UsuarioViewModel vm = await services.Login(email, senha);
+
+        if(vm != null)
+        {
+            await loginServices.Login(context.HttpContext, vm);
+
+            await JsRuntime.InvokeVoidAsync("alert", "Login Efetuado com Sucesso!");
+
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Ocorreu um Erro! Consulte o Console e contate o administrador do sistema!");
+        }
+    }
 }

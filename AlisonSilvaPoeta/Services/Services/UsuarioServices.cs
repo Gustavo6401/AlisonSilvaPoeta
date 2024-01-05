@@ -1,4 +1,5 @@
-﻿using AlisonSilvaPoeta.Interfaces.Repositories;
+﻿using AlisonSilvaPoeta.Interfaces.Cryptograph;
+using AlisonSilvaPoeta.Interfaces.Repositories;
 using AlisonSilvaPoeta.Interfaces.Services;
 using AlisonSilvaPoeta.Models;
 using AlisonSilvaPoeta.Services.Cryptograph;
@@ -12,9 +13,9 @@ public class UsuarioServices : ServicesBase<UsuarioViewModel, Usuario>, IUsuario
 {
     private IMapper Mapper;
     private IUsuarioRepository Repository;
-    private Sha512 Sha512;
+    private ISha512 Sha512;
 
-    public UsuarioServices(IMapper mapper, IUsuarioRepository repository, Sha512 sha512) : base(mapper, repository)
+    public UsuarioServices(IMapper mapper, IUsuarioRepository repository, ISha512 sha512) : base(mapper, repository)
     {
         Mapper = mapper;
         Repository = repository;
