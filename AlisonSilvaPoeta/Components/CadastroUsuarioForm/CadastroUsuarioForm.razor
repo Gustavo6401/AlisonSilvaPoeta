@@ -8,8 +8,8 @@
 @inject IUsuarioServices services;
 @inject IClienteRepository clienteRepository;
 @inject IJSRuntime jsRuntime;
-@inject ILoginServices loginServices
 @inject IHttpContextAccessor context
+@inject NavigationManager Navigation
 @rendermode InteractiveServer
 
 <h1>Cadastro de Usuário</h1>
@@ -39,7 +39,7 @@
 @code {
     UsuarioViewModel vm = new UsuarioViewModel();
 
-    protected override async Task OnInitializedAsync()
+    /*protected override async Task OnInitializedAsync()
     {
         List<UsuarioViewModel> lista = await services.GetAll();
 
@@ -50,7 +50,7 @@
 
             await services.Add(vm);
         }
-    }
+    }*/
 
     public async Task CadastrarUsuario()
     {
@@ -63,6 +63,10 @@
         await clienteRepository.Add(cliente);
 
         await jsRuntime.InvokeVoidAsync("alert", "Cadastro Feito com Sucesso!");
+
+        //await loginServices.Login(context.HttpContext, vm);
+
+        Navigation.NavigateTo("/");
 
         StateHasChanged();
     }

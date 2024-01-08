@@ -11,18 +11,12 @@ using AlisonSilvaPoeta.Services.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(config =>
-    {
-        config.LoginPath = "/Components/Pages/Login.razor";
-        config.AccessDeniedPath = "/Components/Pages/Login.razor";
-        config.ExpireTimeSpan = TimeSpan.FromHours(1);
-    });
-
+builder.Services.AddAuthenticationCore();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -36,10 +30,19 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
+builder.Services.AddScoped<IProdutoServices, ProdutoServices>();
+builder.Services.AddScoped<ILivroServices, LivroServices>();
+
 builder.Services.AddScoped<ISha512, Sha512>();
 builder.Services.AddScoped<ILoginServices, LoginServices>();
+builder.Services.AddScoped<ProtectedSessionStorage>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<CustomAuthenticationStateProvider>();
 
 // builder.Services.AddScoped<AuthenticationStateProvider>();
 // builder.Services.AddScoped<NavigationManager>();
@@ -59,12 +62,6 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
-
-app.UseCookiePolicy(new CookiePolicyOptions
-{
-    MinimumSameSitePolicy = SameSiteMode.Strict,
-    HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always
-});
 
 app.UseAuthentication();
 app.UseAuthorization();

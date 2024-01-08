@@ -2,6 +2,7 @@
 using AlisonSilvaPoeta.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
 namespace AlisonSilvaPoeta.Services.Authentication;
@@ -25,10 +26,12 @@ public class LoginServices : ILoginServices
         var authProperties = new AuthenticationProperties
         {
             ExpiresUtc = DateTime.Now.AddHours(1),
-            IssuedUtc = DateTime.Now
+            IssuedUtc = DateTime.Now,
+            IsPersistent = true
         };
 
-        await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsIdentity, authProperties);
+        //await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsIdentity, authProperties);
+        //await context.SignInAsync(claimsIdentity, authProperties);
     }
 
     public async Task Logoff(HttpContext context)

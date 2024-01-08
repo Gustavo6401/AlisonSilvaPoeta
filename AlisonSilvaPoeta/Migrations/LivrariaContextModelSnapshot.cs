@@ -67,8 +67,8 @@ namespace AlisonSilvaPoeta.Migrations
                         .HasColumnType("nvarchar(12)");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
@@ -187,13 +187,12 @@ namespace AlisonSilvaPoeta.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CodigoBarras")
-                        .IsRequired()
                         .HasMaxLength(35)
                         .HasColumnType("nvarchar(35)");
 
                     b.Property<decimal>("Custo")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -201,8 +200,8 @@ namespace AlisonSilvaPoeta.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal>("Preco")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

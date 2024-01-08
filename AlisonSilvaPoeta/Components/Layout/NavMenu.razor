@@ -1,4 +1,10 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-danger border-bottom box-shadow mb-3">
+﻿@using AlisonSilvaPoeta.Services.Authentication
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject CustomAuthenticationStateProvider customAuthenticationStateProvider
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-danger border-bottom box-shadow mb-3">
     <div class="container-fluid">
         <NavLink class="navbar-brand text-light" href="#">
             Página Inicial
@@ -12,7 +18,21 @@
                 <li class="nav-item">
                     <a class="nav-link text-light" href="/Usuario/Cadastro">Cadastre-Se</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/Produto/Cadastro">Cadastro de Produto</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+
+@code {
+    
+    /*private async Task Logout()
+    {
+        var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+        await customAuthenticationStateProvider.UpdateAuthenticationState(null);
+
+        Navigation.NavigateTo("/");
+    }*/
+}

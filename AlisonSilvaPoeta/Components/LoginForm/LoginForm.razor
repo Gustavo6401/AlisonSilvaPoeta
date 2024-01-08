@@ -1,8 +1,9 @@
 ﻿@using AlisonSilvaPoeta.Interfaces.Login
+@using AlisonSilvaPoeta.Services.Authentication
 @inject NavigationManager Navigation
 @inject IUsuarioServices services
-@inject ILoginServices loginServices
 @inject IHttpContextAccessor context
+@inject AuthenticationStateProvider authenticationStateProvider
 @inject IJSRuntime JsRuntime
 @rendermode InteractiveServer
 
@@ -34,7 +35,8 @@
 
         if(vm != null)
         {
-            await loginServices.Login(context.HttpContext, vm);
+            var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+            await customAuthenticationStateProvider.UpdateAuthenticationState(vm);
 
             await JsRuntime.InvokeVoidAsync("alert", "Login Efetuado com Sucesso!");
 
@@ -42,7 +44,7 @@
         }
         else
         {
-            await JsRuntime.InvokeVoidAsync("alert", "Ocorreu um Erro! Consulte o Console e contate o administrador do sistema!");
+            await JsRuntime.InvokeVoidAsync("alert", "Usuário Inválido!");
         }
     }
 }

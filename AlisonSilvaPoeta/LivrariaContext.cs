@@ -106,18 +106,17 @@ public class LivrariaContext : DbContext
 
         modelBuilder.Entity<Produto>()
             .Property(l => l.Preco)
-                .HasPrecision(2)
+                .HasPrecision(5, 2)
                     .IsRequired();
 
         modelBuilder.Entity<Produto>()
             .Property(l => l.Custo)
-                .HasPrecision(2)
+                .HasPrecision(5, 2)
                     .IsRequired();
 
         modelBuilder.Entity<Produto>()
             .Property(p => p.CodigoBarras)
-                .HasMaxLength(35)
-                    .IsRequired();
+                .HasMaxLength(35);
 
         modelBuilder.Entity<Livro>().HasKey(l => l.Id);
 
@@ -148,7 +147,7 @@ public class LivrariaContext : DbContext
 
         modelBuilder.Entity<Compra>()
             .Property(c => c.Total)
-                .HasPrecision(2)
+                .HasPrecision(7,2)
                     .IsRequired();
 
         modelBuilder.Entity<Compra>()
