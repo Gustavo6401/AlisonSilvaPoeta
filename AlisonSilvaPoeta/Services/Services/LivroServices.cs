@@ -17,5 +17,12 @@ namespace AlisonSilvaPoeta.Services.Services
             Mapper = mapper;
             Repository = repository;
         }
+
+        public async Task<LivroViewModel> GetLivroByProductId(int id)
+        {
+            Livro livro = await Repository.GetByProductId(id);
+
+            return Mapper.Map<LivroViewModel>(livro);
+        }
     }
 }
