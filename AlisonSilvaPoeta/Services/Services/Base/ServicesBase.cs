@@ -26,9 +26,11 @@ public class ServicesBase<T, U> : IServices<T, U> where T : class where U : clas
         throw new NotImplementedException();
     }
 
-    public Task<T> Get(int id)
+    public async Task<T> Get(int id)
     {
-        throw new NotImplementedException();
+        U entity = await Repository.Find(id);
+
+        return Mapper.Map<T>(entity);
     }
 
     public virtual async Task<List<T>> GetAll()

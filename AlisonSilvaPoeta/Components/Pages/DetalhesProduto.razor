@@ -1,0 +1,55 @@
+﻿@page "/Produto/Details/{id:int}"
+
+@inject IProdutoServices produtoServices
+@inject ILivroServices livroServices
+
+@rendermode InteractiveServer
+
+<h3>Detalhes de Produto</h3>
+
+<dl>
+    <dt>Título</dt>
+    <dd>@produto.Titulo</dd>
+    <dt>Descricao</dt>
+    <dd>@produto.Descricao</dd>
+    <dt>Preço</dt>
+    <dd>@produto.Preco.ToString("C2")</dd>
+    @if (livro == null)
+    {
+        <dt>Código de Barras</dt>
+        <dd>@produto.CodigoBarras</dd>
+    }
+    @if (livro != null)
+    {
+        <dt>ISBN</dt>
+        <dd>@livro.ISBN</dd>
+        <dt>Número de Páginas</dt>
+        <dd>@livro.NumeroPaginas</dd>
+    }
+</dl>
+<button class="btn btn-success"><i class="bi bi-cart-check-fill"></i> Adicionar ao Carrinho</button>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private ProdutoViewModel produto = new ProdutoViewModel();
+    private bool isLivro = false;
+    private LivroViewModel livro = new LivroViewModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        int id = Convert.ToInt32(Id);
+
+        produto = await produtoServices.Get(id);
+        livro = await livroServices.GetLivroByProductId(id);
+
+        if (livro != null)
+        {
+            isLivro = true;
+        }
+
+        StateHasChanged();
+    }
+}

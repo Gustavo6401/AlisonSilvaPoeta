@@ -15,7 +15,7 @@ namespace AlisonSilvaPoeta.Repositories
 
         public async Task<Livro> GetByProductId(int id)
         {
-            Livro? livro = await DbContext.Livros.FirstOrDefaultAsync(l => l.Id.Equals(id));
+            Livro? livro = await DbContext.Livros.FirstOrDefaultAsync(l => l.ProdutoId.Equals(id));
 
             return livro;
         }

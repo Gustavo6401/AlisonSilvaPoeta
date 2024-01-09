@@ -3,8 +3,6 @@
 @inject ILivroServices livroServices
 @inject IProdutoServices produtoServices
 
-@rendermode InteractiveServer
-
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-5">
@@ -31,7 +29,7 @@
                         <p class="card-text">@item.Descricao</p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-danger" href="Produto/{@item.Id}">Detalhes do Produto.</a>
+                        <a class="btn btn-danger" href="/Produto/Details/@item.Id.ToString()">Detalhes do Produto.</a>
                     </div>
                 </div>
             }
