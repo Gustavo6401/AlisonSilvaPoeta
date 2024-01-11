@@ -273,3 +273,4 @@ C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comér
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaPoeta\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaPoeta\obj\Debug\net8.0\scopedcss\Components\CadastroUsuarioForm\CadastroUsuarioForm.razor.rz.scp.css
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaPoeta\obj\Debug\net8.0\scopedcss\Components\LoginForm\LoginForm.razor.rz.scp.css
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaPoeta\obj\Debug\net8.0\scopedcss\Components\Pages\Carrinho.razor.rz.scp.css

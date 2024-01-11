@@ -2,6 +2,8 @@
 
 @inject IProdutoServices produtoServices
 @inject ILivroServices livroServices
+@inject ProtectedLocalStorage localStorage
+@inject IJSRuntime JsRuntime
 
 @rendermode InteractiveServer
 
@@ -27,8 +29,7 @@
         <dd>@livro.NumeroPaginas</dd>
     }
 </dl>
-<button class="btn btn-success"><i class="bi bi-cart-check-fill"></i> Adicionar ao Carrinho</button>
-
+<button class="btn btn-success" @onclick="async () => await AdicionarAoCarrinho(produto.Id, produto.Titulo, CodBarrasOuISBN(), produto.Preco)" ><i class="bi bi-cart-check-fill"></i> Adicionar ao Carrinho</button>
 
 @code {
     [Parameter]
@@ -51,5 +52,59 @@
         }
 
         StateHasChanged();
+    }
+
+    private async Task AdicionarAoCarrinho(int id, string nomeProduto, string codBarras, decimal preco) 
+    {
+        // Carrega a lista de todos os itens adicionados ao carrinho.
+        var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
+        List<CartViewModel>? listaCarrinho = result.Value;
+
+        if(listaCarrinho == null)
+        {
+            // Instancia a lista antes de adicionar dados à ela veja a referência: https://pt.stackoverflow.com/questions/399087/adicionar-valor-a-uma-lista-de-strings
+            listaCarrinho = new List<CartViewModel>();
+
+            // Adiciona o item ao carrinho.
+            listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1));
+
+            // Adiciona o Carrinho ao Armazenamento local.
+            await localStorage.SetAsync("Cart", listaCarrinho);
+
+            // Manda mensagem para o usuário informando que o item foi salvo no carrinho.
+            await JsRuntime.InvokeVoidAsync("alert", "Item Adicionado ao Carrinho!");
+        }
+        else
+        {
+            // Verifica se já existe um produto igual a esse no carrinho.
+            CartViewModel? produto = listaCarrinho.FirstOrDefault(c => c.Nome == nomeProduto);
+
+            if (produto == null)
+            {
+                // Apaga o carrinho.
+                await localStorage.DeleteAsync("Cart");
+
+                // Adiciona o item ao carrinho.
+                listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1));
+
+                // Adiciona o Carrinho ao Armazenamento local.
+                await localStorage.SetAsync("Cart", listaCarrinho);
+
+                // Manda mensagem para o usuário informando que o item foi salvo no carrinho.
+                await JsRuntime.InvokeVoidAsync("alert", "Item Adicionado ao Carrinho!");
+            }
+            else
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "O Item Já Havia Sido Adicionado ao Carrinho! Consulte a Página de Carrinho!");
+            }
+        }    
+    }
+
+    private string? CodBarrasOuISBN()
+    {
+        if (livro == null)
+            return produto.CodigoBarras;
+
+        return livro.ISBN;
     }
 }
