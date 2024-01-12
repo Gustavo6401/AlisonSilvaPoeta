@@ -22,5 +22,10 @@ public class MappingProfile : Profile
             .ReverseMap();
         CreateMap<Livro, LivroViewModel>()
             .ReverseMap();
+
+        CreateMap<EnderecoViewModel, Endereco>()
+            .ReverseMap();
+        CreateMap<Endereco, EnderecoViewModel>()
+            .ReverseMap();
     }
 }

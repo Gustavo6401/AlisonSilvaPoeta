@@ -1,0 +1,112 @@
+﻿@page "/Endereco/Cadastro/"
+
+@inject IEnderecoServices enderecoServices
+@inject ProtectedSessionStorage sessionStorage
+@inject IClienteServices clienteServices
+@inject IJSRuntime JsRuntime
+@inject HttpClient client
+
+@rendermode InteractiveServer
+
+<h3>CadastroEndereco</h3>
+
+<EditForm Model="vm" OnSubmit="CadastrarEndereco">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="CEP" class="control-label">CEP</label>
+        <InputText @bind-Value="vm.CEP" class="form-control"></InputText>
+        <ValidationMessage For="() => vm.CEP" />
+    </div>
+    <div class="form-group">
+        <label for="Rua" class="control-label">Rua</label>
+        <InputText @bind-Value="vm.Rua" class="form-control"></InputText>
+        <ValidationMessage For="() => vm.Rua" />
+    </div>
+    <div class="form-group">
+        <label for="Numero" class="control-label">Número</label>
+        <InputNumber @bind-Value="vm.Numero" class="form-control"></InputNumber>
+        <ValidationMessage For="() => vm.Numero" />
+    </div>
+    <div class="form-group">
+        <label for="Bairro" class="control-label">Bairro</label>
+        <InputText @bind-Value="vm.Bairro" class="form-control"></InputText>
+        <ValidationMessage For="() => vm.Bairro" />
+    </div>
+    <div class="form-group">
+        <label for="Cidade" class="control-label">Cidade</label>
+        <InputText @bind-Value="vm.Cidade" class="form-control"></InputText>
+        <ValidationMessage For="() => vm.Cidade" />
+    </div>
+    <div class="form-group">
+        <label for="Bairro" class="control-label">UF</label>
+        <InputSelect @bind-Value="vm.UF">
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AM">AM</option>
+            <option value="AP">AP</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>           
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MG">MG</option>            
+            <option value="MS">MS</option>
+            <option value="MT">MT</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="PR">PR</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="SE">SE</option>
+            <option value="SP">SP</option>
+            <option value="TO">TO</option>
+        </InputSelect>
+        <ValidationMessage For="() => vm.UF" />
+    </div>
+    <button type="submit" class="btn btn-success">Cadastrar Endereço</button>
+</EditForm>
+
+@code {
+    EnderecoViewModel vm = new EnderecoViewModel();
+    UsuarioViewModel usuarioLogado = new UsuarioViewModel();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var logado = await sessionStorage.GetAsync<UsuarioViewModel>("UserSession");
+        usuarioLogado = logado.Value;
+
+        StateHasChanged();
+    }
+
+    private async Task ConsultarAPICorreios()
+    {
+        HttpResponseMessage response = await client.GetAsync($"https://viacep.com.br/ws/{vm.CEP}/json");
+        dynamic resposta = response.Content;
+
+        vm.Rua = resposta.logradouro;
+        vm.Bairro = resposta.bairro;
+        vm.Cidade = resposta.localidade;
+        vm.UF = resposta.uf;
+
+        StateHasChanged();
+    }
+
+    private async Task CadastrarEndereco()
+    {
+        ClienteViewModel clienteLogado = await clienteServices.Get(usuarioLogado.Id);
+        vm.ClienteId = clienteLogado.Id;
+
+        await enderecoServices.Add(vm);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Endereço Cadastrado com Sucesso!");
+
+        StateHasChanged();
+    }
+}

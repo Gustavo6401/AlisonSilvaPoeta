@@ -87,11 +87,6 @@ public class LivrariaContext : DbContext
                 .HasColumnType("char(2)")
                     .IsRequired();
 
-        modelBuilder.Entity<Endereco>()
-            .Property(e => e.Pais)
-                .HasMaxLength(56)
-                    .IsRequired();
-
         modelBuilder.Entity<Produto>().HasKey(p => p.Id);
 
         modelBuilder.Entity<Produto>()

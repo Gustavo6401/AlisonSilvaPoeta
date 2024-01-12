@@ -32,11 +32,13 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
 builder.Services.AddScoped<IProdutoServices, ProdutoServices>();
 builder.Services.AddScoped<ILivroServices, LivroServices>();
+builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
 
 builder.Services.AddScoped<ISha512, Sha512>();
 builder.Services.AddScoped<ILoginServices, LoginServices>();
@@ -47,6 +49,7 @@ builder.Services.AddScoped<CustomAuthenticationStateProvider>();
 // builder.Services.AddScoped<AuthenticationStateProvider>();
 // builder.Services.AddScoped<NavigationManager>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

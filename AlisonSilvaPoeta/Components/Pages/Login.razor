@@ -1,5 +1,4 @@
 ﻿@page "/Usuario/Login"
-@attribute [AllowAnonymous]
 @using AlisonSilvaPoeta.Components.LoginForm
 @inject AuthenticationStateProvider AuthenticationState
 @inject NavigationManager Navigation
@@ -11,11 +10,5 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthenticationState.GetAuthenticationStateAsync();
-
-        if(authState.User.Identity.IsAuthenticated)
-        {
-            Navigation.NavigateTo("/");
-        }
     }
 }
