@@ -17,5 +17,12 @@ namespace AlisonSilvaPoeta.Services.Services
             Mapper = mapper;
             Repository = repository;
         }
+
+        public async Task<ClienteViewModel> GetByUsuarioId(int id)
+        {
+            Cliente cliente = await Repository.GetByUserId(id);
+
+            return Mapper.Map<ClienteViewModel>(cliente);
+        }
     }
 }

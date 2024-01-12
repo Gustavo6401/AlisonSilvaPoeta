@@ -100,8 +100,15 @@
 
     private async Task CadastrarEndereco()
     {
-        ClienteViewModel clienteLogado = await clienteServices.Get(usuarioLogado.Id);
+        ClienteViewModel clienteLogado = await clienteServices.GetByUsuarioId(usuarioLogado.Id);
         vm.ClienteId = clienteLogado.Id;
+
+        if(vm.ClienteId == null)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Usuário Não Cadastrado.");
+
+            return;
+        }
 
         await enderecoServices.Add(vm);
 

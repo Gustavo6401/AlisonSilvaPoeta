@@ -18,6 +18,11 @@ public class MappingProfile : Profile
         CreateMap<Produto, ProdutoViewModel>()
             .ReverseMap();
 
+        CreateMap<ClienteViewModel, Cliente>()
+            .ReverseMap();
+        CreateMap<Cliente, ClienteViewModel>()
+            .ReverseMap();
+
         CreateMap<LivroViewModel, Livro>()
             .ReverseMap();
         CreateMap<Livro, LivroViewModel>()

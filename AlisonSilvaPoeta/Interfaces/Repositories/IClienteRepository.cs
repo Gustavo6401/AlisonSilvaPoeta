@@ -5,5 +5,6 @@ namespace AlisonSilvaPoeta.Interfaces.Repositories
 {
     public interface IClienteRepository : IRepository<Cliente>
     {
+        Task<Cliente> GetByUserId(int id);
     }
 }
