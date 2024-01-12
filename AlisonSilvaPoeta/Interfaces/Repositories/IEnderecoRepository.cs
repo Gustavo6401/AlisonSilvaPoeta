@@ -5,5 +5,6 @@ namespace AlisonSilvaPoeta.Interfaces.Repositories
 {
     public interface IEnderecoRepository : IRepository<Endereco>
     {
+        Task<List<Endereco>> GetEnderecosByClienteId(int id);
     }
 }

@@ -1,0 +1,63 @@
+﻿@page "/Perfil/{Id:int}"
+
+@inject IUsuarioServices services
+@inject IClienteServices clienteServices
+@inject IEnderecoServices enderecoServices
+
+<h3>Perfil</h3>
+
+<dl>
+    <dt>Id do Usuário</dt>
+    <dd>@vm.Id</dd>
+    <dt>Nome Completo</dt>
+    <dd>@vm.Nome</dd>
+    <dt>E-Mail</dt>
+    <dd>@vm.EMail</dd>
+    <dt>Telefone</dt>
+    <dd>@vm.Telefone</dd>
+    <dt>RG</dt>
+    <dd>@vm.RG</dd>
+    <dt>CPF</dt>
+    <dd>@vm.CPF</dd>
+</dl>
+<br />
+<h4>Endereços</h4>
+<a class="btn btn-success" href="/Endereco/Cadastro">Adicionar Endereço</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+        </tr>
+        @foreach(var item in listaEnderecos)
+        {
+            <tr>
+                <td>@item.CEP</td>
+                <td>@item.Rua</td>
+                <td>@item.Numero</td>
+                <td>@item.Bairro</td>
+                <td>@item.Cidade</td>
+                <td>@item.UF</td>
+            </tr>
+        }
+    </thead>
+</table>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private UsuarioViewModel vm = new UsuarioViewModel();
+    private List<EnderecoViewModel> listaEnderecos = new List<EnderecoViewModel>();
+
+    protected override async Task OnInitializedAsync() 
+    {
+        vm = await services.Get(Id);
+
+        ClienteViewModel cliente = await clienteServices.GetByUsuarioId(Id);
+        listaEnderecos = await enderecoServices.GetEnderecosByClienteId(cliente.Id);
+    }
+}
