@@ -33,12 +33,16 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+builder.Services.AddScoped<ICompraRepository, CompraRepository>();
+builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
 
 builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
 builder.Services.AddScoped<IProdutoServices, ProdutoServices>();
 builder.Services.AddScoped<ILivroServices, LivroServices>();
 builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
+builder.Services.AddScoped<ICompraServices, CompraServices>();
+builder.Services.AddScoped<IProdutoPedidoServices, ProdutoPedidoServices>();
 
 builder.Services.AddScoped<ISha512, Sha512>();
 builder.Services.AddScoped<ILoginServices, LoginServices>();

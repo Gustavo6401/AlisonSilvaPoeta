@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Components\TabelaCarrinho\" />
     <Folder Include="Services\Cart\" />
   </ItemGroup>
 

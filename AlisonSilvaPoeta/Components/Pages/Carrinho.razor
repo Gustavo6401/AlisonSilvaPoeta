@@ -28,9 +28,9 @@
                         <td>@item.Nome</td>
                         <td>@item.CodBarras</td>
                         <td>
-                            <a @onclick="() => Remover(item.IdProduto)" class="btn btn-danger">Remover</a>
-                            <a @onclick="() => RemoverItem(item.IdProduto)" class="btn btn-primary">-</a>
-                            <a @onclick="() => AdicionarItem(item.IdProduto)" class="btn btn-success">+</a>
+                            <a @onclick="async () => await Remover(item.IdProduto)" class="btn btn-danger">Remover</a>
+                            <a @onclick="async () => await RemoverItem(item.IdProduto)" class="btn btn-primary">-</a>
+                            <a @onclick="async () => await AdicionarItem(item.IdProduto)" class="btn btn-success">+</a>
                         </td>
                         <td>@item.Preco</td>
                         <td>@item.Quantidade</td>
@@ -71,31 +71,46 @@
         }
     }
 
-    private void AdicionarItem(int id)
+    private async Task AdicionarItem(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
         cartItem.Quantidade++;
 
+        listaProdutos.Remove(cartItem);
+        listaProdutos.Add(cartItem);
+
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
+
         StateHasChanged();
     }
 
-    private void RemoverItem(int id)
+    private async Task RemoverItem(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
         cartItem.Quantidade--;
+
+        listaProdutos.Remove(cartItem);
+        listaProdutos.Add(cartItem);
 
         if(cartItem.Quantidade <= 0)
         {
             listaProdutos.Remove(cartItem);
         }
 
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
+
         StateHasChanged();
     }
 
-    private void Remover(int id)
+    private async Task Remover(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
         listaProdutos.Remove(cartItem);
+
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
 
         StateHasChanged();
     }

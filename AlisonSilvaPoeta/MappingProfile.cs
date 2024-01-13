@@ -32,5 +32,15 @@ public class MappingProfile : Profile
             .ReverseMap();
         CreateMap<Endereco, EnderecoViewModel>()
             .ReverseMap();
+
+        CreateMap<CompraViewModel, Compra>()
+            .ReverseMap();
+        CreateMap<Compra, CompraViewModel>()
+            .ReverseMap();
+
+        CreateMap<ProdutoPedidoViewModel, ProdutoPedido>()
+            .ReverseMap();
+        CreateMap<ProdutoPedido, ProdutoPedidoViewModel>()
+            .ReverseMap();
     }
 }
