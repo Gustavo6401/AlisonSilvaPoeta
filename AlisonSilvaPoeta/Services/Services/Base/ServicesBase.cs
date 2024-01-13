@@ -40,8 +40,10 @@ public class ServicesBase<T, U> : IServices<T, U> where T : class where U : clas
         return Mapper.Map<List<T>>(all);
     }
 
-    public Task Update(T entity)
+    public virtual async Task Update(T entity)
     {
-        throw new NotImplementedException();
+        U entidade = Mapper.Map<U>(entity);
+
+        await Repository.Update(entidade);
     }
 }

@@ -1,0 +1,70 @@
+﻿@page "/EditarCadastro/{Id:int}"
+@using AlisonSilvaPoeta.Interfaces.Cryptograph
+
+@inject IUsuarioServices services
+@inject IUsuarioRepository repository
+@inject ISha512 Sha512
+@inject IJSRuntime JsRuntime
+
+@rendermode InteractiveServer
+
+<h3>Editar Cadastro</h3>
+
+<EditForm Model="usuario" OnSubmit="EditarUsuario">
+    <DataAnnotationsValidator />    
+    <div class="form-group">
+        <label class="control-label" for="EMail">E-Mail</label>
+        <InputText @bind-Value="usuario.Nome" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.Nome" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Nome">Nome Completo</label>
+        <input type="email" @bind-value="usuario.EMail" class="form-control"></input>
+        <ValidationMessage For="() => usuario.EMail" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Senha">Senha</label>
+        <input type="password" @bind-value="usuario.Senha" class="form-control"></input>
+        <ValidationMessage For="() => usuario.Senha" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Telefone">Telefone</label>
+        <InputText @bind-Value="usuario.Telefone" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.Telefone" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="RG">RG</label>
+        <InputText @bind-Value="usuario.RG" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.RG" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Nome">CPF</label>
+        <InputText @bind-Value="usuario.CPF" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.CPF" />
+    </div>
+    <button type="submit" class="btn btn-warning">Alterar Cadastro</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    Usuario usuario = new Usuario();
+
+    protected override async Task OnInitializedAsync()
+    {
+        usuario = await repository.Find(Id);
+
+        StateHasChanged();
+    }
+
+    private async Task EditarUsuario()
+    {
+        usuario.Senha = Sha512.Criptografar(usuario.Senha);
+
+        await repository.Update(usuario);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Cadastro Alterado com Sucesso!");
+
+        StateHasChanged();
+    }
+}

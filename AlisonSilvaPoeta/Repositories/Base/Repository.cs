@@ -39,6 +39,8 @@ public class Repository<T> : IRepository<T> where T : class
 
     public async Task Update(T entity)
     {
+        DbContext.Entry(entity).State = EntityState.Detached;
+
         DbContext.Entry(entity).State = EntityState.Modified;
 
         await DbContext.SaveChangesAsync();

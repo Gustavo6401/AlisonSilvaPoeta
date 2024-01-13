@@ -38,4 +38,13 @@ public class UsuarioServices : ServicesBase<UsuarioViewModel, Usuario>, IUsuario
 
         return Mapper.Map<UsuarioViewModel>(entity);
     }
+
+    public override async Task Update(UsuarioViewModel vm)
+    {
+        vm.Senha = Sha512.Criptografar(vm.Senha);
+
+        Usuario usuario = Mapper.Map<Usuario>(vm);
+
+        await Repository.Update(usuario);
+    }
 }
