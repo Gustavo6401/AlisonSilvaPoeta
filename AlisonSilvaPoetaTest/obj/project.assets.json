@@ -81,6 +81,23 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
+      "mercadopago-sdk/2.3.5": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/MercadoPago.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/MercadoPago.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authentication/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1340,7 +1357,7 @@
           "System.Security.Permissions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
         },
@@ -1791,7 +1808,8 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
           "Microsoft.EntityFrameworkCore": "8.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.0",
+          "mercadopago-sdk": "2.3.5"
         },
         "compile": {
           "bin/placeholder/AlisonSilvaPoeta.dll": {}
@@ -1924,6 +1942,26 @@
         "coverlet-icon.png",
         "coverlet.collector.6.0.0.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "mercadopago-sdk/2.3.5": {
+      "sha512": "N9UC5c+F8G2hAFPzcbX0GR/mA5Cfu0iw2gE7k3c8qr63irHtf5EQNxFZMxpz5x/gOCj/TiUSVqXzX74PaDhe3w==",
+      "type": "package",
+      "path": "mercadopago-sdk/2.3.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/MercadoPago.dll",
+        "lib/net461/MercadoPago.pdb",
+        "lib/net461/MercadoPago.xml",
+        "lib/net5.0/MercadoPago.dll",
+        "lib/net5.0/MercadoPago.pdb",
+        "lib/net5.0/MercadoPago.xml",
+        "lib/netstandard2.0/MercadoPago.dll",
+        "lib/netstandard2.0/MercadoPago.pdb",
+        "lib/netstandard2.0/MercadoPago.xml",
+        "mercadopago-sdk.2.3.5.nupkg.sha512",
+        "mercadopago-sdk.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication/2.2.0": {

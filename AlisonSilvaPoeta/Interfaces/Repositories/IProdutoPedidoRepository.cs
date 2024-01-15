@@ -5,5 +5,6 @@ namespace AlisonSilvaPoeta.Interfaces.Repositories
 {
     public interface IProdutoPedidoRepository : IRepository<ProdutoPedido>
     {
+        Task<List<ProdutoPedido>> GetByCompraId(int id);
     }
 }

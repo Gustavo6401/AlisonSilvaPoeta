@@ -1,0 +1,74 @@
+﻿@page "/Compra/Detalhes/{Id:int}"
+
+@inject ICompraServices compraServices
+@inject IProdutoPedidoServices produtoPedidoServices
+@inject IProdutoServices produtoServices
+@inject IEnderecoServices enderecoServices
+
+<h3>Detalhes da Compra</h3>
+
+<dl>
+    <dt>Data da Compra</dt>
+    <dd>@compra.DataCompra</dd>
+    <dt>Total</dt>
+    <dd>@compra.Total.ToString("C")</dd>
+    <dt>Status</dt>
+    <dd>@compra.Status</dd>
+    <dt>Endereço</dt>
+    <dd>@endereco.Rua, @endereco.Numero</dd>
+    <dt>Bairro</dt>
+    <dd>@endereco.Bairro</dd>
+    <dt>CEP</dt>
+    <dd>@endereco.CEP</dd>
+    <dt>Cidade</dt>
+    <dd>@endereco.Cidade</dd>
+    <dt>Estado</dt>
+    <dd>@endereco.UF</dd>
+</dl>
+<h4>Produtos Comprados</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Quantidade Comprada</th>
+            <th>Preço</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in listaProdutos)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.QtdVendida</td>
+                <td>@item.Preco</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    CompraViewModel compra = new CompraViewModel();
+    EnderecoViewModel endereco = new EnderecoViewModel();
+    List<ProdutoPedidoViewModel> listaProdutoPedido = new List<ProdutoPedidoViewModel>();
+    List<DetalhesCompraViewModel> listaProdutos = new List<DetalhesCompraViewModel>();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        compra = await compraServices.Get(Id);
+        endereco = await enderecoServices.Get(compra.EnderecoId);
+        listaProdutoPedido = await produtoPedidoServices.GetByCompraId(Id);
+
+        foreach(var item in listaProdutoPedido)
+        {
+            ProdutoViewModel produto = await produtoServices.Get(item.ProdutoId);
+
+            listaProdutos.Add(new DetalhesCompraViewModel(produto.Titulo, produto.Preco, item.QtdVendida));
+        }
+
+        StateHasChanged();
+    }
+}

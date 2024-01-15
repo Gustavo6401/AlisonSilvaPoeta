@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ChOD/fxMizEziHZx1BI7A70UD29f53FCmJjha9oSOACkfm7WMWVJh7kkewRDmDN6uIOjXVN7tnB/XISwG8JPLA==",
+  "dgSpecHash": "6dYF7wob4HAYnXFrIo3phxwT0BvRahVn7zk/yZe/1v34Gb+j0WTW7r/HLnqmSeACf5Bljw2Q/uayybplETRnJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaPoetaTest\\AlisonSilvaPoetaTest.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Gustavo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\Gustavo\\.nuget\\packages\\mercadopago-sdk\\2.3.5\\mercadopago-sdk.2.3.5.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
