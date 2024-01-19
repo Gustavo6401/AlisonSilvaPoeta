@@ -7,6 +7,7 @@ using AlisonSilvaPoeta.Interfaces.Services;
 using AlisonSilvaPoeta.Repositories;
 using AlisonSilvaPoeta.Services.Authentication;
 using AlisonSilvaPoeta.Services.Cryptograph;
+using AlisonSilvaPoeta.Services.MercadoPago;
 using AlisonSilvaPoeta.Services.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
@@ -49,6 +50,7 @@ builder.Services.AddScoped<ILoginServices, LoginServices>();
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddScoped<CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<Pagamento>();
 
 // builder.Services.AddScoped<AuthenticationStateProvider>();
 // builder.Services.AddScoped<NavigationManager>();

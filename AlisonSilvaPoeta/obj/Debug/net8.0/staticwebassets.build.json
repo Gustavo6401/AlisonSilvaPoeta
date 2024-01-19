@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5FMR24qjY0Wain1QNAcn5ChTQHJ4cr25DP1uhTNqRYA=",
+  "Hash": "+yDHDEbs1NT9d6o8cSuU3zdRZxqrCe5QcuByw+YY7bQ=",
   "Source": "AlisonSilvaPoeta",
   "BasePath": "_content/AlisonSilvaPoeta",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaPoeta\\Components\\PagamentoCartao\\GerarTokenCartao.razor.js",
+      "SourceId": "AlisonSilvaPoeta",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaPoeta\\",
+      "BasePath": "_content/AlisonSilvaPoeta",
+      "RelativePath": "Components/PagamentoCartao/GerarTokenCartao.razor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "Components\\PagamentoCartao\\GerarTokenCartao.razor.js"
+    },
     {
       "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaPoeta\\obj\\Debug\\net8.0\\scopedcss\\bundle\\AlisonSilvaPoeta.styles.css",
       "SourceId": "AlisonSilvaPoeta",

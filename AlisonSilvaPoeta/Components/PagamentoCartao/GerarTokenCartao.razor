@@ -1,0 +1,78 @@
+﻿@using AlisonSilvaPoeta.Services.MercadoPago;
+
+@inject IJSRuntime JsRuntime
+@inject Pagamento pagamento
+
+@rendermode InteractiveServer
+
+<form id="form-checkout" action="/process_payment" method="POST" @onsubmit=Pagar>
+    <input id="form-checkout__cardNumber" class="container" placeholder="Número do Cartão" />
+    <input id="form-checkout__expirationDate" class="container" placeholder="Data de Expiração" />
+    <input id="form-checkout__securityCode" class="container" placeholder="Código de Segurança" />
+    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" />
+    <select id="form-checkout__issuer" name="issuer">
+        <option value="">Banco Emissor</option>
+        <option value="Itaú">Itaú</option>
+        <option value="Bradesco">Bradesco</option>
+    </select>
+
+    <select id="form-checkout__installments" name="installments" @bind="parcelas">
+        <option value="">Parcelas</option>
+        <option value="1">1</option>
+    </select>
+    <select id="form-checkout__identificationType" name="identificationType" @bind=tipoIdentificacao>
+        <option value="">Tipo do Documento</option>
+        <option value="CPF">CPF</option>
+        <option value="CNPJ">CNPJ</option>
+    </select>
+    <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" @bind=numeroIdentificacao />
+    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" @bind=EMail />
+
+    <input id="token" name="token" type="hidden">
+    <input id="paymentMethodId" name="paymentMethodId" type="hidden" @bind=metodoPagamentoId>
+    <input id="transactionAmount" name="transactionAmount" type="hidden" value="@Total">
+    <input id="description" name="description" type="hidden" value="Nome do Produto">
+
+    <button type="submit" id="form-checkout__submit">Pagar</button>
+</form>
+@if(renderizado == false)
+{
+    <script src="../Components/PagamentoCartao/GerarTokenCartao.razor.js"></script>
+}
+
+@code {
+    string parcelas = "";
+    string metodoPagamentoId = "";
+    string tipoIdentificacao = "";
+    string numeroIdentificacao = "";
+    bool renderizado = false;
+
+    [Parameter]
+    public decimal Total { get; set; }
+
+    [Parameter]
+    public string EMail { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            // Isso vai indicar a hora de adicionar o Arquivo JavaScript aqui.
+            renderizado = true;
+        }
+    }
+
+    private async Task Pagar()
+    {
+        StateHasChanged();
+
+        string cardToken = await JsRuntime.InvokeAsync<string>("createCardToken");
+        Console.WriteLine($"Token: {cardToken}");
+
+        await pagamento.PagamentoCartao(Total, cardToken, Convert.ToInt32(parcelas), metodoPagamentoId, EMail, tipoIdentificacao, numeroIdentificacao);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Pagamento Realizado com Sucesso!");
+
+        StateHasChanged();
+    }
+}
