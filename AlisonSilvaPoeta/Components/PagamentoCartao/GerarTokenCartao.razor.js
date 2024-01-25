@@ -1,4 +1,4 @@
-﻿const mp = new MercadoPago("Minha Chave Pública.");
+﻿const mp = new MercadoPago("Minha Public Key");
 
 const cardNumberElement = mp.fields.create('cardNumber', {
     placeholder: "Número do cartão"
@@ -153,10 +153,10 @@ const formElement = document.getElementById('form-checkout');
 formElement.addEventListener('submit', createCardToken);
 
 async function createCardToken(event) {
-    try {
+    //try {
         const tokenElement = document.getElementById('token');
         if (!tokenElement.value) {
-            event.preventDefault();
+            //event.preventDefault();
             const token = await mp.fields.createCardToken({
                 cardholderName: document.getElementById('form-checkout__cardholderName').value,
                 identificationType: document.getElementById('form-checkout__identificationType').value,
@@ -166,7 +166,8 @@ async function createCardToken(event) {
             formElement.requestSubmit();
         }
         return tokenElement.value;
-    } catch (e) {
+        // Tirar o TryCatch para ver o erro e o que eu posso fazer...
+    /*} catch (e) {
         console.error('error creating card token: ', e)
-    }
+    }*/
 }

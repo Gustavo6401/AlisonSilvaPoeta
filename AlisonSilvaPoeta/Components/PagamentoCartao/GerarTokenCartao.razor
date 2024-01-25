@@ -25,6 +25,15 @@
         <option value="CPF">CPF</option>
         <option value="CNPJ">CNPJ</option>
     </select>
+    <InputSelect @bind-Value="tipoCartao">
+        <option value="">Escolha seu Cartão</option>
+        <option value="visa">Visa</option>
+        <option value="master">MasterCard</option>
+        <option value="hipercard">Hipercard</option>
+        <option value="amex">American Express</option>
+        <option value="elo">Elo</option>
+        <option value="cabal">Cabal</option>
+    </InputSelect>
     <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" @bind=numeroIdentificacao />
     <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" @bind=EMail />
 
@@ -44,6 +53,7 @@
     string parcelas = "";
     string metodoPagamentoId = "";
     string tipoIdentificacao = "";
+    string tipoCartao = "";
     string numeroIdentificacao = "";
     bool renderizado = false;
 
@@ -62,9 +72,27 @@
         }
     }
 
+    private void SelecionarBandeiraCartao()
+    {
+        if (tipoCartao == "visa")
+            metodoPagamentoId = "visa";
+        if (tipoCartao == "master")
+            metodoPagamentoId = "master";
+        if (tipoCartao == "hipercard")
+            metodoPagamentoId = "hipercard";
+        if (tipoCartao == "amex")
+            metodoPagamentoId = "amex";
+        if (tipoCartao == "elo")
+            metodoPagamentoId = "elo";
+        if (tipoCartao == "cabal")
+            metodoPagamentoId = "cabal";
+    }
+
     private async Task Pagar()
     {
         StateHasChanged();
+
+        SelecionarBandeiraCartao();
 
         string cardToken = await JsRuntime.InvokeAsync<string>("createCardToken");
         Console.WriteLine($"Token: {cardToken}");
