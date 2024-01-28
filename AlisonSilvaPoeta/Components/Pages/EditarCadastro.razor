@@ -14,23 +14,23 @@
     <DataAnnotationsValidator />    
     <div class="form-group">
         <label class="control-label" for="EMail">E-Mail</label>
-        <InputText @bind-Value="usuario.Nome" class="form-control"></InputText>
-        <ValidationMessage For="() => usuario.Nome" />
+        <InputText @bind-Value="usuario.NormalizedUserName" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.NormalizedUserName" />
     </div>
     <div class="form-group">
         <label class="control-label" for="Nome">Nome Completo</label>
-        <input type="email" @bind-value="usuario.EMail" class="form-control"></input>
-        <ValidationMessage For="() => usuario.EMail" />
+        <input type="email" @bind-value="usuario.NormalizedEmail" class="form-control"></input>
+        <ValidationMessage For="() => usuario.NormalizedEmail" />
     </div>
     <div class="form-group">
         <label class="control-label" for="Senha">Senha</label>
-        <input type="password" @bind-value="usuario.Senha" class="form-control"></input>
-        <ValidationMessage For="() => usuario.Senha" />
+        <input type="password" @bind-value="usuario.PasswordHash" class="form-control"></input>
+        <ValidationMessage For="() => usuario.PasswordHash" />
     </div>
     <div class="form-group">
         <label class="control-label" for="Telefone">Telefone</label>
-        <InputText @bind-Value="usuario.Telefone" class="form-control"></InputText>
-        <ValidationMessage For="() => usuario.Telefone" />
+        <InputText @bind-Value="usuario.PhoneNumber" class="form-control"></InputText>
+        <ValidationMessage For="() => usuario.PhoneNumber" />
     </div>
     <div class="form-group">
         <label class="control-label" for="RG">RG</label>
@@ -59,7 +59,7 @@
 
     private async Task EditarUsuario()
     {
-        usuario.Senha = Sha512.Criptografar(usuario.Senha);
+        usuario.PasswordHash = Sha512.Criptografar(usuario.PasswordHash);
 
         await repository.Update(usuario);
 

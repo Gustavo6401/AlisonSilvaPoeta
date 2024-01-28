@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using AlisonSilvaPoeta.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,17 @@ var sqlServerConnection = builder.Configuration.GetConnectionString("DefaultConn
 
 builder.Services.AddDbContext<LivrariaContext>(context =>
     context.UseSqlServer(sqlServerConnection));
+
+builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LivrariaContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    options.LoginPath = "/Areas/Identity/Pages/Account";
+});
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -50,6 +64,7 @@ builder.Services.AddScoped<ILoginServices, LoginServices>();
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddScoped<CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<Pagamento>();
 
 // builder.Services.AddScoped<AuthenticationStateProvider>();

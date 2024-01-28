@@ -15,8 +15,8 @@ namespace AlisonSilvaPoeta.Repositories
 
         public async Task<Usuario> Login(string email, string senha)
         {
-            return await DbContext.Usuarios.FirstOrDefaultAsync(u => u.EMail.Equals(email)
-                                                                &&   u.Senha.Equals(senha));
+            return await DbContext.Usuarios.FirstOrDefaultAsync(u => u.NormalizedEmail.Equals(email)
+                                                                &&   u.PasswordHash.Equals(senha));
         }
     }
 }

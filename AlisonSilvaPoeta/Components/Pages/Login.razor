@@ -1,14 +1,72 @@
-﻿@page "/Usuario/Login"
+﻿@page "/Login"
+
 @using AlisonSilvaPoeta.Components.LoginForm
-@inject AuthenticationStateProvider AuthenticationState
-@inject NavigationManager Navigation
+@using AlisonSilvaPoeta.Interfaces.Cryptograph
+@using AlisonSilvaPoeta.Services.Authentication
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Identity
+
+@inject IdentityRedirectManager redirectManager
+@inject SignInManager<Usuario> signInManager
+@inject ILogger<Usuario> logger
+@inject ISha512 Sha512
+
+<PageTitle>Login</PageTitle>
 
 <h3>Login</h3>
-
-<LoginForm></LoginForm>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <EditForm Model="usuario" OnSubmit=FazerLogin id="account" method="post" FormName="login">
+                <DataAnnotationsValidator />
+                <h4>Use uma conta local para fazer login.</h4>
+                <hr />
+                <div class="form-floating mb-3">
+                    <InputText type="email" @bind-value=usuario.Email class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label class="form-label">Email</label>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText type="password" @bind-value=usuario.PasswordHash class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <label class="form-label">Senha</label>
+                    <span class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+            </EditForm>
+        </section>
+    </div>
+</div>
 
 @code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    private Usuario? usuario { get; set; }
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
+        if (HttpMethods.IsGet(HttpContext.Request.Method))
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+        }
+    }
+
+    public async Task FazerLogin()
+    {
+        usuario.PasswordHash = Sha512.Criptografar(usuario.PasswordHash);
+
+        var result = await signInManager.PasswordSignInAsync(usuario.Email, usuario.PasswordHash, isPersistent: false, lockoutOnFailure: false);
+
+        if (result.Succeeded)
+        {
+            logger.LogInformation("User logged in.");
+
+            redirectManager.RedirectTo(ReturnUrl);
+        }
     }
 }

@@ -42,8 +42,8 @@ namespace AlisonSilvaPoetaTest.Repositories
 
             Usuario resultado = await repository.Find(1);
 
-            Assert.AreEqual(usuario.EMail, resultado.EMail);
-            Assert.AreEqual(usuario.Senha, resultado.Senha);
+            Assert.AreEqual(usuario.NormalizedEmail, resultado.NormalizedEmail);
+            Assert.AreEqual(usuario.PasswordHash, resultado.PasswordHash);
         }
 
         [TestMethod]
@@ -59,8 +59,8 @@ namespace AlisonSilvaPoetaTest.Repositories
         {
             Usuario usuario = await repository.Find(1);
 
-            Assert.AreEqual(usuario.EMail, "gsoey2019123@gmail.com");
-            Assert.AreEqual(usuario.Senha, "1010");
+            Assert.AreEqual(usuario.NormalizedEmail, "gsoey2019123@gmail.com");
+            Assert.AreEqual(usuario.PasswordHash, "1010");
         }
 
         [TestMethod]
@@ -73,8 +73,8 @@ namespace AlisonSilvaPoetaTest.Repositories
 
             Usuario resultado = await repository.Find(1);
 
-            Assert.AreEqual(resultado.Nome, usuario.Nome);
-            Assert.AreEqual(resultado.EMail, usuario.EMail);
+            Assert.AreEqual(resultado.NormalizedUserName, usuario.NormalizedUserName);
+            Assert.AreEqual(resultado.NormalizedEmail, usuario.NormalizedEmail);
         }
 
         [TestMethod]

@@ -1,11 +1,15 @@
 ﻿using AlisonSilvaPoeta.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AlisonSilvaPoeta;
 
-public class LivrariaContext : DbContext
-{
-    public LivrariaContext(DbContextOptions<LivrariaContext> options) : base(options) { }
+public class LivrariaContext(DbContextOptions<LivrariaContext> options) : 
+    IdentityDbContext<Usuario, Roles, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, 
+        IdentityRoleClaim<int>, IdentityUserToken<int>>(options) 
+{ 
+    public DbSet<Roles>? Roles { get; set; }
     public DbSet<Usuario>? Usuarios { get; set; }
     public DbSet<Cliente>? Clientes { get; set; }
     public DbSet<Endereco> Endereco { get; set; }
@@ -17,31 +21,37 @@ public class LivrariaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Roles>().ToTable("Roles");
+
+        modelBuilder.Entity<Roles>().HasKey(r => r.Id);
+
+        modelBuilder.Entity<Roles>()
+            .Property(r => r.NormalizedName)
+                .HasMaxLength(20)
+                    .IsRequired();
+
+        modelBuilder.Entity<Usuario>().ToTable("Usuario");
+
         modelBuilder.Entity<Usuario>().HasKey(u => u.Id);
 
         modelBuilder.Entity<Usuario>()
-            .Property(u => u.Nome)
+            .Property(u => u.NormalizedUserName)
                 .HasMaxLength(100)
                     .IsRequired();
 
         modelBuilder.Entity<Usuario>()
-            .Property(u => u.EMail)
+            .Property(u => u.NormalizedEmail)
                 .HasMaxLength(255)
                     .IsRequired();
 
         modelBuilder.Entity<Usuario>()
-            .Property(u => u.Senha)
+            .Property(u => u.PasswordHash)
                 .HasMaxLength(129)
                     .IsRequired();
 
         modelBuilder.Entity<Usuario>()
-            .Property(u => u.Telefone)
+            .Property(u => u.PhoneNumber)
                 .HasMaxLength(23)
-                    .IsRequired();
-
-        modelBuilder.Entity<Usuario>()
-            .Property(u => u.Permisao)
-                .HasMaxLength(13)
                     .IsRequired();
 
         modelBuilder.Entity<Usuario>()
@@ -53,6 +63,12 @@ public class LivrariaContext : DbContext
             .Property(u => u.CPF)
                 .HasColumnType("char(14)")
                     .IsRequired();
+
+        modelBuilder.Entity<IdentityUserLogin<int>>().HasNoKey();
+
+        modelBuilder.Entity<IdentityUserRole<int>>().HasNoKey();
+
+        modelBuilder.Entity<IdentityUserToken<int>>().HasNoKey();
 
         modelBuilder.Entity<Cliente>().HasKey(c => c.Id);
 
@@ -161,6 +177,12 @@ public class LivrariaContext : DbContext
             .Property(pp => pp.QtdVendida)
                 .IsRequired();
 
+        modelBuilder.Entity<Roles>()
+            .HasMany(r => r.Usuarios)
+                .WithOne(u => u.Role)
+                    .IsRequired()
+                        .OnDelete(DeleteBehavior.NoAction);
+
         modelBuilder.Entity<Usuario>()
             .HasOne(u => u.Cliente)
                 .WithOne(c => c.Usuario)
@@ -195,6 +217,19 @@ public class LivrariaContext : DbContext
             .HasOne(c => c.Endereco)
                 .WithMany(e => e.Compras)
                     .IsRequired()
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade);        
+    }
+
+    private void CadastrarRoles()
+    {
+        Roles.Add(new Models.Roles { Id = 0, Name = "Cliente", NormalizedName = "Administrador" });
+        Roles.Add(new Models.Roles { Id = 0, Name = "Cliente", NormalizedName = "Cliente" });
+
+        SaveChanges();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        
     }
 }

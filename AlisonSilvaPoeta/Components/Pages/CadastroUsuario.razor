@@ -1,17 +1,96 @@
 ﻿@page "/Usuario/Cadastro"
+@using AlisonSilvaPoeta.Components.Shared
+@using AlisonSilvaPoeta.Interfaces.Cryptograph
+@using AlisonSilvaPoeta.Services.Authentication
+@using Microsoft.AspNetCore.Identity
 
-<div class="justify-content-center align-items-center">
-    <!--Se ocorrer um erro no Componente CadastroUsuarioForm, a mensagem de erro será exibida.-->
-    <ErrorBoundary>
-        <ChildContent>
-            <CadastroUsuarioForm></CadastroUsuarioForm>
-        </ChildContent>
-        <ErrorContent>
-            <p>Ocorreu um Erro! Contate o administrador do sistema!</p>
-        </ErrorContent>
-    </ErrorBoundary>
+@inject ISha512 Sha512
+@inject IUsuarioRepository repository
+@inject SignInManager<Usuario> signInManager
+@inject IdentityRedirectManager RedirectManager
+
+<div class="row">
+    <div class="col-md-4">
+        <StatusMessage Message="@Message" />
+        <EditForm Model="Usuario" OnSubmit="Cadastro">
+            <DataAnnotationsValidator />
+            <h2>Cadastre-se</h2>
+            <hr />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Usuario.UserName" class="form-control" placeholder="Gustavo da Silva" />
+                <label for="username">Nome Completo</label>
+                <ValidationMessage For="() => Usuario.UserName" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Usuario.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label for="email">Email</label>
+                <ValidationMessage For="() => Usuario.Email" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Usuario.PasswordHash" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label for="password">Password</label>
+                <ValidationMessage For="() => Usuario.PasswordHash" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="confirmarSenha" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label for="confirm-password">Confirm Password</label>
+                <ValidationMessage For="() => confirmarSenha" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Usuario.PhoneNumber" class="form-control" aria-required="true" placeholder="Número de Telefone" />
+                <label for="phoneNumber">Celular</label>
+                <ValidationMessage For="() => Usuario.PhoneNumber" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Usuario.RG" class="form-control" aria-required="true" placeholder="RG" />
+                <label for="rg">RG</label>
+                <ValidationMessage For="() => Usuario.RG" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Usuario.CPF" class="form-control" aria-required="true" placeholder="CPF" />
+                <label for="rg">CPF</label>
+                <ValidationMessage For="() => Usuario.CPF" class="text-danger" />
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Cadastre-se</button>
+        </EditForm>
+    </div>
 </div>
 
 @code {
+    string confirmarSenha = "";
 
+    private IEnumerable<IdentityError>? IdentityErrors;
+
+    [SupplyParameterFromForm]
+    private Usuario? Usuario { get; set; }
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    private string? Message => IdentityErrors is null ? null : $"Error: {string.Join(", ", IdentityErrors.Select(error => error.Description))}";
+
+    public async Task Cadastro()
+    {
+        await RegistrarUsuario();
+
+        await signInManager.SignInAsync(Usuario, isPersistent: false);
+
+        RedirectManager.RedirectTo(ReturnUrl);
+    }
+
+    public async Task RegistrarUsuario()
+    {
+        Usuario.NormalizedUserName = Usuario.UserName;
+        Usuario.Email = Usuario.Email;
+        Usuario.EmailConfirmed = true;
+        Usuario.PasswordHash = Sha512.Criptografar(Usuario.PasswordHash);
+        Usuario.PhoneNumberConfirmed = true;
+        Usuario.TwoFactorEnabled = false;
+        Usuario.LockoutEnabled = false;
+        Usuario.AccessFailedCount = 0;
+        Usuario.RoleId = 2;
+
+        await repository.Add(Usuario);
+    }
 }
