@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AlisonSilvaPoetaIdentityUser.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<Usuario>(options)
     {
 
     }
