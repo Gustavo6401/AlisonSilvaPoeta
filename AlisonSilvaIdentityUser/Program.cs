@@ -2,7 +2,9 @@ using AlisonSilvaIdentityUser.Components;
 using AlisonSilvaIdentityUser.Components.Account;
 using AlisonSilvaIdentityUser.Data;
 using AlisonSilvaIdentityUser.Interfaces.Repositories;
+using AlisonSilvaIdentityUser.Interfaces.Services;
 using AlisonSilvaIdentityUser.Repositories;
+using AlisonSilvaIdentityUser.Services.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +29,13 @@ builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IImagensRepository, ImagensRepository>();
 builder.Services.AddScoped<ICompraRepository, ComprasRepository>();
 builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
+
+builder.Services.AddScoped<IClienteServices, ClienteServices>();
+builder.Services.AddScoped<IProdutoServices, ProdutoServices>();
+builder.Services.AddScoped<ILivroServices, LivroServices>();
+builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
+builder.Services.AddScoped<IComprasServices, CompraServices>();
+builder.Services.AddScoped<IProdutoPedidoServices, ProdutoPedidoServices>();
 
 builder.Services.AddAuthentication(options =>
     {
