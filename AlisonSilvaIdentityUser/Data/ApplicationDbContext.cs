@@ -23,7 +23,7 @@ namespace AlisonSilvaIdentityUser.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            //base.OnModelCreating(builder);
 
             builder.Entity<Roles>()
                 .HasKey(u => u.Id);

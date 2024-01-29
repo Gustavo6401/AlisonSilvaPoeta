@@ -3,6 +3,7 @@ using AlisonSilvaIdentityUser.Components.Account;
 using AlisonSilvaIdentityUser.Data;
 using AlisonSilvaIdentityUser.Interfaces.Repositories;
 using AlisonSilvaIdentityUser.Interfaces.Services;
+using AlisonSilvaIdentityUser.Models;
 using AlisonSilvaIdentityUser.Repositories;
 using AlisonSilvaIdentityUser.Services.Services;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -57,6 +58,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<Roles>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
