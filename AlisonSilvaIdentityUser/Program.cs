@@ -1,6 +1,8 @@
 using AlisonSilvaIdentityUser.Components;
 using AlisonSilvaIdentityUser.Components.Account;
 using AlisonSilvaIdentityUser.Data;
+using AlisonSilvaIdentityUser.Interfaces.Repositories;
+using AlisonSilvaIdentityUser.Repositories;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,14 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<IImagensRepository, ImagensRepository>();
+builder.Services.AddScoped<ICompraRepository, ComprasRepository>();
+builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
 
 builder.Services.AddAuthentication(options =>
     {
