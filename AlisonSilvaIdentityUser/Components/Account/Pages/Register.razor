@@ -28,19 +28,34 @@
             <hr />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.NomeCompleto" class="form-control" autocomplete="nome completo" aria-required="true" placeholder="Gustavo da Silva Oliveira" />
+                <label for="nomeCompleto">Nome Completo</label>
+                <ValidationMessage For="() => Input.NomeCompleto" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label for="email">Email</label>
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
                 <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="password">Password</label>
+                <label for="password">Senha</label>
                 <ValidationMessage For="() => Input.Password" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
                 <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label for="confirm-password">Confirm Password</label>
                 <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.RG" class="form-control" autocomplete="username" aria-required="true" placeholder="00.000.000-0" />
+                <label for="email">RG</label>
+                <ValidationMessage For="() => Input.RG" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.CPF" class="form-control" autocomplete="username" aria-required="true" placeholder="000.000.000-00" />
+                <label for="email">CPF</label>
+                <ValidationMessage For="() => Input.CPF" class="text-danger" />
             </div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </EditForm>
@@ -68,6 +83,11 @@
     public async Task RegisterUser(EditContext editContext)
     {
         var user = CreateUser();
+
+        user.NomeCompleto = Input.NomeCompleto;
+        user.RG = Input.RG;
+        user.CPF = Input.CPF;
+        user.RoleId = 2;
 
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         var emailStore = GetEmailStore();
@@ -141,5 +161,20 @@
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
+
+        [Required]
+        [Display(Name = "Nome Completo")]
+        [DataType(DataType.Text)]
+        public string? NomeCompleto { get; set; }
+
+        [Required]
+        [Display(Name = "RG")]
+        [DataType(DataType.Text)]
+        public string? RG { get; set; }
+
+        [Required]
+        [Display(Name = "CPF")]
+        [DataType(DataType.Text)]
+        public string? CPF { get; set; }
     }
 }

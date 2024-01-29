@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AlisonSilvaIdentityUser.bundle.scp.css",
+      "PackagePath": "staticwebassets\\AlisonSilvaIdentityUser.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AlisonSilvaIdentityUser.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AlisonSilvaIdentityUser.props",
+      "PackagePath": "build\\AlisonSilvaIdentityUser.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AlisonSilvaIdentityUser.props",
+      "PackagePath": "buildMultiTargeting\\AlisonSilvaIdentityUser.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AlisonSilvaIdentityUser.props",
+      "PackagePath": "buildTransitive\\AlisonSilvaIdentityUser.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

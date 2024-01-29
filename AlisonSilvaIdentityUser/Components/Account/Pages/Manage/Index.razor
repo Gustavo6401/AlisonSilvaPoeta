@@ -20,13 +20,28 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
-                <input type="text" value="@username" class="form-control" placeholder="Please choose your username." disabled />
+                <InputText @bind-Value="Input.NomeCompleto" class="form-control" placeholder="Gustavo da Silva Oliveira" />
+                <label for="phone-number" class="form-label">Nome Completo</label>
+                <ValidationMessage For="() => Input.NomeCompleto" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" value="@username" class="form-control" placeholder="Por favor Escolha seu Nome de Usuário" disabled />
                 <label for="username" class="form-label">Username</label>
             </div>
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
-                <label for="phone-number" class="form-label">Phone number</label>
+                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="+55 (00) 00000-0000" />
+                <label for="phone-number" class="form-label">Número de Telefone</label>
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.RG" class="form-control" placeholder="00.000.000-0" />
+                <label for="phone-number" class="form-label">RG</label>
+                <ValidationMessage For="() => Input.RG" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.CPF" class="form-control" placeholder="000.000.000-00" />
+                <label for="phone-number" class="form-label">CPF</label>
+                <ValidationMessage For="() => Input.CPF" class="text-danger" />
             </div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </EditForm>
@@ -73,5 +88,20 @@
         [Phone]
         [Display(Name = "Phone number")]
         public string? PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nome Completo")]
+        public string? NomeCompleto { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "RG")]
+        public string? RG { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "CPF")]
+        public string? CPF { get; set; }
     }
 }
