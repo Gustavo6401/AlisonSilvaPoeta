@@ -138,3 +138,5 @@ C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comér
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\obj\Debug\net8.0\ref\AlisonSilvaIdentityUser.dll
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MercadoPago.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\Newtonsoft.Json.dll
