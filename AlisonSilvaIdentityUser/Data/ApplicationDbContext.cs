@@ -150,7 +150,7 @@ namespace AlisonSilvaIdentityUser.Data
 
             builder.Entity<Compra>()
                 .Property(c => c.Status)
-                    .HasMaxLength(12)
+                    .HasMaxLength(25)
                         .IsRequired();
 
             builder.Entity<ProdutoPedido>().HasKey(pp => pp.Id);

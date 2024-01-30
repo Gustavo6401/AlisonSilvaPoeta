@@ -1,6 +1,10 @@
-﻿@page "/Carrinho"
+﻿@page "/Carrinho/{userName}"
+
+@using AlisonSilvaIdentityUser.Data
 
 @inject ProtectedLocalStorage localStorage
+@inject ApplicationUserRepository repository
+@inject ProtectedSessionStorage sessionStorage
 
 @rendermode InteractiveServer
 
@@ -60,7 +64,12 @@
     </table>
 </div>
 
+<a href="/Compra" class="w-100 btn btn-lg btn-success">Seguir para a Tela de Compra</a>
+
 @code {
+    [Parameter]
+    public string? UserName { get; set; }
+
     List<CartViewModel>? listaProdutos = new List<CartViewModel>();
     bool loaded = false;
 
@@ -71,6 +80,9 @@
             var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
             listaProdutos = result.Value;
             loaded = true;
+
+            ApplicationUser usuario = await repository.GetByUserName(UserName!);
+            await sessionStorage.SetAsync("UserSession", usuario);
 
             StateHasChanged();
 

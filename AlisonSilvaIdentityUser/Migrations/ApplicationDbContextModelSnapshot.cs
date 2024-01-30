@@ -141,8 +141,8 @@ namespace AlisonSilvaIdentityUser.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<decimal>("Total")
                         .HasPrecision(7, 2)

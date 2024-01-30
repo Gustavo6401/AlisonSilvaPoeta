@@ -1,0 +1,212 @@
+﻿@page "/Compra"
+@using AlisonSilvaIdentityUser.Data
+
+@inject ProtectedLocalStorage localStorage
+@inject ProtectedSessionStorage sessionStorage
+@inject IEnderecoServices enderecoServices
+@inject IClienteServices clienteServices
+@inject IComprasServices compraServices
+@inject IProdutoPedidoServices produtoPedidoServices
+@inject IJSRuntime JsRuntime
+
+@attribute [Authorize]
+
+@rendermode InteractiveServer
+
+<PageTitle>Página de Compras</PageTitle>
+
+<h3>Compra</h3>
+
+<button @onclick="ExibirCarrinho" class="btn btn-info">Ver Carrinho</button>
+
+    @if (carrinho == true)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Id do Produto</th>
+                <th>Nome do Produto</th>
+                <th>Código de Barras</th>
+                <th></th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listaProdutos)
+            {
+                <tr>
+                    <td>@item.IdProduto</td>
+                    <td>@item.Nome</td>
+                    <td>@item.CodBarras</td>
+                    <td>
+                        <a @onclick="() => Remover(item.IdProduto)" class="btn btn-danger">Remover</a>
+                        <a @onclick="() => RemoverItem(item.IdProduto)" class="btn btn-primary">-</a>
+                        <a @onclick="() => AdicionarItem(item.IdProduto)" class="btn btn-success">+</a>
+                    </td>
+                    <td>@item.Preco</td>
+                    <td>@item.Quantidade</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+            @if (listaProdutos == null)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" href="/">Nada No Carrinho! Volte à Página Inicial!</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+<h4>Selecione o Endereço de Envio</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Selecionado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in listaEnderecos)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.CEP</td>
+                <td>@item.Rua</td>
+                <td>@item.Numero</td>
+                <td>@item.Bairro</td>
+                <td>@item.Cidade</td>
+                <td>@item.UF</td>
+                <button @onclick="async () => await AdicionarEndereco(item.Id)" class="btn btn-info">Selecionar Endereço</button>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<EditForm Model="compra" OnSubmit="CadastrarCompra">
+    <InputSelect @bind-Value="compra.FormaPagamento">
+        <option value="Cartão de Crédito" @onselect="() => compra.FormaPagamento = cartaoCredito">Cartão de Crédito</option>
+        <option value="Boleto">Boleto Bancário</option>
+        <option value="Pix">Pix</option>
+    </InputSelect>
+    <h4>Total: @total</h4>
+    <button class="btn btn-success" type="submit">Concluir Compra</button>
+</EditForm>
+
+@code {
+    bool carrinho = false;
+    bool loaded = false;
+    bool enderecoSelecionado = false;
+    string cartaoCredito = "Cartão de Crédito";
+    bool pix = false;
+    decimal total = 0;
+    string email = "";
+    ApplicationUser usuario = new ApplicationUser();
+    EnderecoViewModel endereco = new EnderecoViewModel();
+    CompraViewModel compra = new CompraViewModel();
+    List<CartViewModel> listaProdutos = new List<CartViewModel>();
+    List<EnderecoViewModel> listaEnderecos = new List<EnderecoViewModel>();
+
+    private void ExibirCarrinho()
+    {
+        if (carrinho == false)
+            carrinho = true;
+        else
+            carrinho = false;
+
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var result1 = await sessionStorage.GetAsync<ApplicationUser>("UserSession");
+            usuario = result1.Value;
+            email = usuario.Email;
+
+            ClienteViewModel cliente = await clienteServices.GetByUsuarioId(usuario.Id);
+            listaEnderecos = await enderecoServices.GetEnderecosByClienteId(cliente.Id);
+
+            var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
+            listaProdutos = result.Value;
+            loaded = true;
+
+            total = listaProdutos.Sum(p => p.Total);
+
+            StateHasChanged();
+        }
+    }
+
+    private async Task CadastrarCompra()
+    {
+        compra.Total = total;
+        compra.DataCompra = DateTime.Now;
+        compra.Status = "Aguardando Pagamento";
+        compra.EnderecoId = endereco.Id;
+
+        await compraServices.Add(compra);
+
+        List<CompraViewModel> listaCompras = await compraServices.GetAll();
+        CompraViewModel compraCerta = listaCompras.Last();
+
+        foreach (var item in listaProdutos)
+        {
+            ProdutoPedidoViewModel produtoPedido = new ProdutoPedidoViewModel(0, item.Quantidade, item.IdProduto, compraCerta.Id);
+
+            await produtoPedidoServices.Add(produtoPedido);
+        }
+
+        await JsRuntime.InvokeVoidAsync("alert", "Compra Enviada com Sucesso!");        
+
+        StateHasChanged();
+    }
+
+    private void AdicionarItem(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        cartItem.Quantidade++;
+
+        StateHasChanged();
+    }
+
+    private void RemoverItem(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        cartItem.Quantidade--;
+
+        if (cartItem.Quantidade <= 0)
+        {
+            listaProdutos.Remove(cartItem);
+        }
+
+        StateHasChanged();
+    }
+
+    private void Remover(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        listaProdutos.Remove(cartItem);
+
+        StateHasChanged();
+    }
+
+    private async Task AdicionarEndereco(int id)
+    {
+        endereco = await enderecoServices.Get(id);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Endereço Selecionado");
+
+        StateHasChanged();
+    }
+}

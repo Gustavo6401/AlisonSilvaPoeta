@@ -75,9 +75,9 @@
         </AuthorizeView>
         <AuthorizeView>
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="/Carrinho">
-                    <span class="bi bi-cart-check-fill" aria-hidden="true"></span> Carrinho
-                </NavLink>
+                <div class="nav-link">
+                    <span class="bi bi-cart-check-fill" aria-hidden="true"></span> <a class="nav-link" href="/Carrinho/@context.User.Identity?.Name">Carrinho</a>
+                </div>
             </div>
         </AuthorizeView>
     </nav>
@@ -85,6 +85,9 @@
 
 @code {
     private string? currentUrl;
+
+    [CascadingParameter]
+    public HttpContext HttpContext { get; set; } = default!;
 
     protected override void OnInitialized()
     {
