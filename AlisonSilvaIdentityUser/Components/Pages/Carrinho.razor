@@ -1,0 +1,123 @@
+﻿@page "/Carrinho"
+
+@inject ProtectedLocalStorage localStorage
+
+@rendermode InteractiveServer
+
+@attribute [Authorize]
+
+<PageTitle>Carrinho</PageTitle>
+
+<h3>Carrinho</h3>
+
+<div class="row">
+    <h4>Carrinho</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Id do Produto</th>
+                <th>Nome do Produto</th>
+                <th>Código de Barras</th>
+                <th></th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (loaded == true)
+            {
+                @foreach (var item in listaProdutos)
+                {
+                    <tr>
+                        <td>@item.IdProduto</td>
+                        <td>@item.Nome</td>
+                        <td>@item.CodBarras</td>
+                        <td>
+                            <a @onclick="async () => await Remover(item.IdProduto)" class="btn btn-danger">Remover</a>
+                            <a @onclick="async () => await RemoverItem(item.IdProduto)" class="btn btn-primary">-</a>
+                            <a @onclick="async () => await AdicionarItem(item.IdProduto)" class="btn btn-success">+</a>
+                        </td>
+                        <td>@item.Preco</td>
+                        <td>@item.Quantidade</td>
+                        <td>@item.Total</td>
+                    </tr>
+                }
+                @if (listaProdutos == null)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary" href="/">Nada No Carrinho! Volte à Página Inicial!</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <p>Carregando...</p>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    List<CartViewModel>? listaProdutos = new List<CartViewModel>();
+    bool loaded = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
+            listaProdutos = result.Value;
+            loaded = true;
+
+            StateHasChanged();
+
+        }
+    }
+
+    private async Task AdicionarItem(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        cartItem.Quantidade++;
+
+        listaProdutos.Remove(cartItem);
+        listaProdutos.Add(cartItem);
+
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
+
+        StateHasChanged();
+    }
+
+    private async Task RemoverItem(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        cartItem.Quantidade--;
+
+        listaProdutos.Remove(cartItem);
+        listaProdutos.Add(cartItem);
+
+        if (cartItem.Quantidade <= 0)
+        {
+            listaProdutos.Remove(cartItem);
+        }
+
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
+
+        StateHasChanged();
+    }
+
+    private async Task Remover(int id)
+    {
+        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
+        listaProdutos.Remove(cartItem);
+
+        await localStorage.DeleteAsync("Cart");
+        await localStorage.SetAsync("Cart", listaProdutos);
+
+        StateHasChanged();
+    }
+}
