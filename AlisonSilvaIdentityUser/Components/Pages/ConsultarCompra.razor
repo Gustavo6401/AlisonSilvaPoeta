@@ -1,0 +1,71 @@
+﻿@page "/ConsultarCompra"
+
+@inject IEnderecoServices enderecoServices
+@inject IComprasServices compraServices
+
+@attribute [Authorize(Roles = "Administrador")]
+
+<PageTitle>Compras Cadastradas</PageTitle>
+
+<h3>Compras Cadastradas</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id da Compra</th>
+            <th>Data da Compra</th>
+            <th>Total da Compra</th>
+            <th>Status da Compra</th>
+            <th>Consultar Detalhes</th>
+            <th>Id do Endereço</th>
+            <th>Endereço de Entrega</th>
+            <th>CEP</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in consultarCompra)
+        {
+            <tr>
+                <td>@item.Compra.Id</td>
+                <td>@item.Compra.DataCompra</td>
+                <td>@item.Compra.Total</td>
+                <td>
+                    <InputSelect @bind-Value="item.Compra.Status">
+                        <option value="Aguardando Envio">Aguardando Envio</option>
+                        <option value="Enviando">Enviando</option>
+                        <option value="Enviada">Enviada</option>
+                    </InputSelect>
+                </td>
+                <td>
+                    <a class="btn btn-info" href="/DetalhesCompra/@item.Compra.Id">Produtos Comprados</a>
+                </td>
+                <td>@item.Endereco.Id</td>
+                <td>@item.Endereco.Rua</td>
+                <td>@item.Endereco.CEP</td>
+                <td>@item.Endereco.Bairro</td>
+                <td>@item.Endereco.Cidade</td>
+                <td>@item.Endereco.UF</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<ConsultarCompraViewModel> consultarCompra = new List<ConsultarCompraViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        List<CompraViewModel> listaCompras = await compraServices.GetAll();
+
+        foreach (var item in listaCompras)
+        {
+            EnderecoViewModel endereco = await enderecoServices.Get(item.EnderecoId);
+
+            consultarCompra.Add(new ConsultarCompraViewModel(endereco, item));
+        }
+    }
+}

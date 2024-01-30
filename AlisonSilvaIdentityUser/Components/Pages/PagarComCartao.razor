@@ -1,0 +1,63 @@
+﻿@page "/Pagamento/Cartao"
+
+@attribute [Authorize]
+
+<PageTitle>Pagamento</PageTitle>
+
+<h3>PagarComCartao</h3>
+<form id="form-checkout" action="/process_payment" method="POST">
+    <input id="form-checkout__cardNumber" class="container" placeholder="Número do Cartão" />
+    <input id="form-checkout__expirationDate" class="container" placeholder="Data de Expiração" />
+    <input id="form-checkout__securityCode" class="container" placeholder="Código de Segurança" />
+    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" />
+    <select id="form-checkout__issuer" name="issuer">
+        <option value="">Banco Emissor</option>
+        <option value="Itaú">Itaú</option>
+        <option value="Bradesco">Bradesco</option>
+    </select>
+
+    <select id="form-checkout__installments" name="installments">
+        <option value="">Parcelas</option>
+        <option value="1">1</option>
+    </select>
+    <select id="form-checkout__identificationType" name="identificationType">
+        <option value="">Tipo do Documento</option>
+        <option value="CPF">CPF</option>
+        <option value="CNPJ">CNPJ</option>
+    </select>
+    <select>
+        <option value="">Escolha seu Cartão</option>
+        <option value="visa">Visa</option>
+        <option value="master">MasterCard</option>
+        <option value="hipercard">Hipercard</option>
+        <option value="amex">American Express</option>
+        <option value="elo">Elo</option>
+        <option value="cabal">Cabal</option>
+    </select>
+    <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" />
+    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" />
+
+    <input id="token" name="token" type="hidden">
+    <input id="paymentMethodId" name="paymentMethodId" type="hidden">
+    <input id="transactionAmount" name="transactionAmount" type="hidden">
+    <input id="description" name="description" type="hidden" value="Nome do Produto">
+
+    <button type="submit" id="form-checkout__submit">Pagar</button>
+</form>
+@if (renderizado == true)
+{
+    <script src="../Components/PagamentoCartao/PagarComCartao.razor.js"></script>
+}
+
+@code {
+    bool renderizado = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Isso vai indicar a hora de adicionar o Arquivo JavaScript aqui.
+            renderizado = true;
+        }
+    }
+}

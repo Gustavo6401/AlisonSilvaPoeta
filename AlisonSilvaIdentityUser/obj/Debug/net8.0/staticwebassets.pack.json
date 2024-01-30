@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\Pages\\PagarComCartao.razor.js",
+      "PackagePath": "staticwebassets\\Components\\Pages\\PagarComCartao.razor.js"
+    },
+    {
       "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AlisonSilvaIdentityUser.bundle.scp.css",
       "PackagePath": "staticwebassets\\AlisonSilvaIdentityUser.bundle.scp.css"
     },

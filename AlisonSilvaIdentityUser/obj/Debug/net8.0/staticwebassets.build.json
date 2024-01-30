@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lkY8RH0P9CI8EJGIuuDkUVPCnPO5oPKo9g6FNvpIHco=",
+  "Hash": "8F4r7WvVbDFAFIUvibxwaJKjU9duS0fX8adnE4zRGlI=",
   "Source": "AlisonSilvaIdentityUser",
   "BasePath": "_content/AlisonSilvaIdentityUser",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\Pages\\PagarComCartao.razor.js",
+      "SourceId": "AlisonSilvaIdentityUser",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\",
+      "BasePath": "_content/AlisonSilvaIdentityUser",
+      "RelativePath": "Components/Pages/PagarComCartao.razor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "Components\\Pages\\PagarComCartao.razor.js"
+    },
     {
       "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\obj\\Debug\\net8.0\\scopedcss\\bundle\\AlisonSilvaIdentityUser.styles.css",
       "SourceId": "AlisonSilvaIdentityUser",
