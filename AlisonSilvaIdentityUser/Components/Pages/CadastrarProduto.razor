@@ -1,9 +1,89 @@
 ﻿@page "/CadastroProduto"
 
+@inject IProdutoServices produtoServices
+@inject ILivroServices livroServices
+@inject IJSRuntime jsRuntime
+
+@rendermode InteractiveServer
+
 @attribute [Authorize(Roles = "Administrador")]
 
 <h3>Cadastrar Produto</h3>
 
-@code {
+<EditForm Model="vm" OnValidSubmit="CadastroProduto">
+    <DataAnnotationsValidator />
+    <div class="form-group mb-3">
+        <InputText @bind-Value="vm.Titulo" class="form-control" />
+        <label class="control-label" for="titulo">Título</label>
+        <ValidationMessage For="() => vm.Titulo" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="control-label" for="Descricao">Descrição</label>
+        <InputTextArea @bind-Value="vm.Descricao" class="form-control" />
+        <ValidationMessage For="() => vm.Descricao" />
+    </div>
+    <div class="form-group mb-3">
+        <InputNumber @bind-Value="vm.Preco" class="form-control" />
+        <label class="control-label" for="preco">Preço</label>
+        <ValidationMessage For="() => vm.Preco" />
+    </div>
+    <div class="form-group mb-3">
+        <InputNumber @bind-Value="vm.Custo" class="form-control" />
+        <label class="control-label" for="custo">Custo</label>
+        <ValidationMessage For="() => vm.Custo" />
+    </div>
+    <div class="form-floating mb-3">
+        <InputText @bind-Value="vm.CodigoBarras" class="form-control" />
+        <label class="control-label" for="codigoBarras">Código de Barras</label>
+        <ValidationMessage For="() => vm.CodigoBarras" />
+    </div>
+    <div class="form-group mb-3">
+        <input type="checkbox" @onclick=VerificaLivro @bind="livro" />
+    </div>
+    @if (livro)
+    {
+        <div class="form-group mb-3">
+            <InputText @bind-Value="livroViewModel.ISBN" class="form-control" />
+            <label class="control-label" for="isbn">ISBN</label>
+            <ValidationMessage For="() => livroViewModel.ISBN" />
+        </div>
+        <div class="form-group mb-3">
+            <InputNumber @bind-Value="livroViewModel.NumeroPaginas" class="form-control" />
+            <label class="control-label" for="numeroPaginas">Número de Páginas</label>
+            <ValidationMessage For="() => livroViewModel.NumeroPaginas" />
+        </div>
+    }
+    <button type="submit" class="w-100 btn btn-lg btn-success">Cadastrar</button>
+</EditForm>
 
+@code {
+    ProdutoViewModel vm = new ProdutoViewModel();
+    LivroViewModel livroViewModel = new LivroViewModel();
+    bool livro = false;
+
+    private void VerificaLivro()
+    {
+        StateHasChanged();
+    }
+
+    private async Task CadastroProduto()
+    {
+        await produtoServices.Add(vm);
+        List<ProdutoViewModel> listaProdutos = await produtoServices.GetAll();
+
+        if (livro == true)
+        {
+            livroViewModel.ProdutoId = listaProdutos.Last().Id;
+
+            await livroServices.Add(livroViewModel);
+
+            await jsRuntime.InvokeVoidAsync("alert", "Livro Cadastrado com Sucesso!");
+        }
+        else
+        {
+            await jsRuntime.InvokeVoidAsync("alert", "Produto Cadastrado com Sucesso!");
+        }
+
+        StateHasChanged();
+    }
 }
