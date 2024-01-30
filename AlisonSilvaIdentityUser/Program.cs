@@ -30,6 +30,7 @@ builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IImagensRepository, ImagensRepository>();
 builder.Services.AddScoped<ICompraRepository, ComprasRepository>();
 builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
+builder.Services.AddScoped<ApplicationUserRepository>();
 
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
 builder.Services.AddScoped<IProdutoServices, ProdutoServices>();

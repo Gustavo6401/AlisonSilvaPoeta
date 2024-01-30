@@ -1,0 +1,139 @@
+﻿@page "/Account/Manage/CadastrarEndereco"
+@using AlisonSilvaIdentityUser.Data
+@using System.ComponentModel.DataAnnotations
+
+@inject IClienteServices clienteServices
+@inject IEnderecoServices enderecoServices
+@inject ApplicationUserRepository repository
+@inject IdentityRedirectManager RedirectManager
+
+<PageTitle>Cadastrar Endereço</PageTitle>
+
+<h3>Cadastrar Endereco</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <EditForm Model="Endereco" FormName="cadastrarEndereco" OnValidSubmit="OnSubmitAsync" method="post">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Endereco.Rua" class="form-control" placeholder="Rua 4" />
+                <label for="rua" class="form-label">Rua</label>
+                <ValidationMessage For="() => Endereco.Rua" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Endereco.CEP" class="form-control" placeholder="00000-000" />
+                <label for="rua" class="form-label">CEP</label>
+                <ValidationMessage For="() => Endereco.CEP" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Endereco.Bairro" class="form-control" placeholder="Jardim das Flores" />
+                <label for="rua" class="form-label">Bairro</label>
+                <ValidationMessage For="() => Endereco.Bairro" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputNumber @bind-Value="Endereco.Numero" class="form-control" placeholder="10" />
+                <label for="rua" class="form-label">Número</label>
+                <ValidationMessage For="() => Endereco.Numero" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Endereco.Cidade" class="form-control" placeholder="São Paulo" />
+                <label for="rua" class="form-label">Cidade</label>
+                <ValidationMessage For="() => Endereco.Rua" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputSelect @bind-Value="Endereco.UF">
+                    <option value="">Estado</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AM">AM</option>
+                    <option value="AP">AP</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MG">MG</option>
+                    <option value="MS">MS</option>
+                    <option value="MT">MT</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="PR">PR</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="RS">RS</option>
+                    <option value="SC">SC</option>
+                    <option value="SE">SE</option>
+                    <option value="SP">SP</option>
+                    <option value="TO">TO</option>
+                </InputSelect>
+                <ValidationMessage For="() => Endereco.UF" class="text-danger" />
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-success">Cadastrar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private EnderecoViewModel endereco = new();
+
+    [CascadingParameter]
+    public HttpContext HttpContext { get; set; } = default!;
+
+    [Parameter]
+    public int ClienteId { get; set; }
+
+    [SupplyParameterFromForm]
+    private InputModel Endereco { get; set; } = new InputModel();
+
+    private async Task OnSubmitAsync()
+    {
+        ApplicationUser usuario = await repository.GetByUserName(HttpContext.User.Identity?.Name!);
+        ClienteViewModel cliente = await clienteServices.GetByUsuarioId(usuario.Id);
+
+        if (cliente == null)
+        {
+            cliente = new ClienteViewModel(usuario.Id);
+            await clienteServices.Add(cliente);            
+        }
+
+        cliente = await clienteServices.GetByUsuarioId(usuario.Id);
+        endereco.ClienteId = cliente.Id;
+        endereco.Rua = Endereco.Rua;
+        endereco.CEP = Endereco.CEP;
+        endereco.Bairro = Endereco.Bairro;
+        endereco.Numero = Endereco.Numero;
+        endereco.Cidade = Endereco.Cidade;
+        endereco.UF = Endereco.UF;
+
+        await enderecoServices.Add(endereco);
+
+        RedirectManager.RedirectToCurrentPageWithStatus("Seus Dados foram Atualizados.", HttpContext);
+    }
+
+    private sealed class InputModel
+    {
+        [DataType(DataType.PostalCode)]
+        [Display(Name = "CEP")]
+        public string? CEP { get; set; }
+        [Display(Name = "Rua")]
+        [DataType(DataType.Text)]
+        public string? Rua { get; set; }
+        [Display(Name = "Número")]
+        public int Numero { get; set; }
+        [Display(Name = "Bairro")]
+        [DataType(DataType.Text)]
+        public string? Bairro { get; set; }
+        [Display(Name = "Cidade")]
+        [DataType(DataType.Text)]
+        public string? Cidade { get; set; }
+        [Display(Name = "Estado")]
+        [DataType(DataType.Text)]
+        public string? UF { get; set; }
+    }
+}
