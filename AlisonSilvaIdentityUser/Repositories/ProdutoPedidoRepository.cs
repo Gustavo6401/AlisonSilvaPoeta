@@ -16,7 +16,7 @@ namespace AlisonSilvaIdentityUser.Repositories
 
         public async Task<List<ProdutoPedido>> GetByCompraId(int id)
         {
-            List<ProdutoPedido> produtoPedidos = await DbContext.ProdutoPedidos.Where(t => t.ProdutoId == id)
+            List<ProdutoPedido> produtoPedidos = await DbContext.ProdutoPedidos.Where(t => t.CompraId == id)
                 .ToListAsync();
 
             return produtoPedidos;
