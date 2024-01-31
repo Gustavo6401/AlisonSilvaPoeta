@@ -156,7 +156,7 @@ async function createCardToken(event) {
     //try {
     const tokenElement = document.getElementById('token');
     if (!tokenElement.value) {
-        //event.preventDefault();
+        event.preventDefault();
         const token = await mp.fields.createCardToken({
             cardholderName: document.getElementById('form-checkout__cardholderName').value,
             identificationType: document.getElementById('form-checkout__identificationType').value,
@@ -166,6 +166,8 @@ async function createCardToken(event) {
         formElement.requestSubmit();
     }
     return tokenElement.value;
+
+    console.log(tokenElement.value)
     // Tirar o TryCatch para ver o erro e o que eu posso fazer...
     /*} catch (e) {
         console.error('error creating card token: ', e)

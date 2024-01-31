@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\CheckoutPro.razor.js",
+      "PackagePath": "staticwebassets\\Components\\CheckoutPro.razor.js"
+    },
+    {
       "Id": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\Pages\\PagarComCartao.razor.js",
       "PackagePath": "staticwebassets\\Components\\Pages\\PagarComCartao.razor.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8F4r7WvVbDFAFIUvibxwaJKjU9duS0fX8adnE4zRGlI=",
+  "Hash": "8DyhoU5zjSR0QT83jBAooin3Z2KONHto6Fg3Q4IHuZE=",
   "Source": "AlisonSilvaIdentityUser",
   "BasePath": "_content/AlisonSilvaIdentityUser",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\CheckoutPro.razor.js",
+      "SourceId": "AlisonSilvaIdentityUser",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\",
+      "BasePath": "_content/AlisonSilvaIdentityUser",
+      "RelativePath": "Components/CheckoutPro.razor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "Components\\CheckoutPro.razor.js"
+    },
     {
       "Identity": "C:\\Users\\Gustavo\\Documents\\Gustavo TI\\Programação\\C#\\Projetos-Freelance\\Comércios Digitais\\Blazor Server\\AlisonSilvaPoeta\\AlisonSilvaIdentityUser\\Components\\Pages\\PagarComCartao.razor.js",
       "SourceId": "AlisonSilvaIdentityUser",
