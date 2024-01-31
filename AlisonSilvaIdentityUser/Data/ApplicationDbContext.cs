@@ -144,11 +144,6 @@ namespace AlisonSilvaIdentityUser.Data
                         .IsRequired();
 
             builder.Entity<Compra>()
-                .Property(c => c.FormaPagamento)
-                    .HasMaxLength(17)
-                        .IsRequired();
-
-            builder.Entity<Compra>()
                 .Property(c => c.Status)
                     .HasMaxLength(25)
                         .IsRequired();

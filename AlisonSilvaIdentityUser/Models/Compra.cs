@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public DateTime? DataCompra { get; set; }
         public decimal Total { get; set; }
-        public string? FormaPagamento { get; set; }
         public string? Status { get; set; }
 
         public Endereco? Endereco { get; set; }

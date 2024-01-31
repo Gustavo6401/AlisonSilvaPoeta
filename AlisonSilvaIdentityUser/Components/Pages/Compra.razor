@@ -97,12 +97,7 @@
     </tbody>
 </table>
 <br />
-<EditForm Model="compra" OnSubmit="CadastrarCompra">
-    <InputSelect @bind-Value="compra.FormaPagamento">
-        <option value="Cartão de Crédito" @onselect="() => compra.FormaPagamento = cartaoCredito">Cartão de Crédito</option>
-        <option value="Boleto">Boleto Bancário</option>
-        <option value="Pix">Pix</option>
-    </InputSelect>
+<EditForm Model="compra" OnSubmit="CadastrarCompra">    
     <h4>Total: @total</h4>
     <button class="btn btn-success" type="submit">Concluir Compra</button>
 </EditForm>

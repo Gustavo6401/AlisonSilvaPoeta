@@ -30,7 +30,7 @@
         @foreach (var item in consultarCompra)
         {
             <tr>
-                <td>@item.Compra.Id</td>
+                <td>@item.Compra!.Id</td>
                 <td>@item.Compra.DataCompra</td>
                 <td>@item.Compra.Total</td>
                 <td>
@@ -43,7 +43,7 @@
                 <td>
                     <a class="btn btn-info" href="/DetalhesCompra/@item.Compra.Id">Produtos Comprados</a>
                 </td>
-                <td>@item.Endereco.Id</td>
+                <td>@item.Endereco!.Id</td>
                 <td>@item.Endereco.Rua</td>
                 <td>@item.Endereco.CEP</td>
                 <td>@item.Endereco.Bairro</td>
