@@ -1,9 +1,15 @@
 ﻿@page "/ConsultarCompra"
 
+@using AlisonSilvaIdentityUser.Interfaces.Repositories
+
 @inject IEnderecoServices enderecoServices
 @inject IComprasServices compraServices
+@inject ICompraRepository compraRepository
+@inject IJSRuntime JsRuntime
 
 @attribute [Authorize(Roles = "Administrador")]
+
+@rendermode InteractiveServer
 
 <PageTitle>Compras Cadastradas</PageTitle>
 
@@ -35,10 +41,12 @@
                 <td>@item.Compra.Total</td>
                 <td>
                     <InputSelect @bind-Value="item.Compra.Status">
+                        <option value="Aguardando Pagamento">Aguardando Pagamento</option>
                         <option value="Aguardando Envio">Aguardando Envio</option>
                         <option value="Enviando">Enviando</option>
                         <option value="Enviada">Enviada</option>
                     </InputSelect>
+                    <button class="btn btn-warning" @onclick="async () => await ModificarStatusCompra(item.Compra.Id, item.Compra.Status!)">Modificar Status</button>
                 </td>
                 <td>
                     <a class="btn btn-info" href="/DetalhesCompra/@item.Compra.Id">Produtos Comprados</a>
@@ -56,6 +64,7 @@
 
 @code {
     List<ConsultarCompraViewModel> consultarCompra = new List<ConsultarCompraViewModel>();
+    AlisonSilvaIdentityUser.Models.Compra compra = new AlisonSilvaIdentityUser.Models.Compra();
 
     protected override async Task OnInitializedAsync()
     {
@@ -67,5 +76,18 @@
 
             consultarCompra.Add(new ConsultarCompraViewModel(endereco, item));
         }
+    }
+
+    private async Task ModificarStatusCompra(int idCompra, string status)
+    {
+        compra = await compraRepository.Find(idCompra);
+
+        // Modifica manualmente a propriedade
+        compra.Status = status;
+        await compraRepository.Update(compra);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Dados Modificados com Sucesso.");
+
+        StateHasChanged();
     }
 }
