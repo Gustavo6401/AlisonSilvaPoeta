@@ -19,22 +19,9 @@
         </div>
         <hr class="mt-3" />
         <div class="row">
-            @foreach (var item in listaProdutos)
+            @foreach (var item in listaProdutos!)
             {
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch">
-                    <div class="card text-center bg-light">
-                    </div>
-                    <div class="card-header">
-                        <h4>@item.Preco</h4>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Titulo</h5>
-                        <p class="card-text">@item.Descricao</p>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-danger" href="/DetalhesProduto/@item.Id">Detalhes do Produto.</a>
-                    </div>
-                </div>
+                <ItemCard Item="item" />
             }
         </div>
     </div>

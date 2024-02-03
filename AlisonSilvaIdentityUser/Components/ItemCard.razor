@@ -1,0 +1,10 @@
+﻿<div class="cartao-item">
+    <h4 class="titulo">@Item!.Titulo</h4>
+    <h4 class="preco">@Item.Preco.ToString("C2")</h4>
+    <a class="button" href="/DetalhesProduto/@Item.Id">Detalhes do Produto</a>
+</div>
+
+@code {
+    [Parameter]
+    public ProdutoViewModel? Item { get; set; }
+}

@@ -1,0 +1,37 @@
+﻿.cartao-item {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 10vw;
+    height: 30vh;
+}
+
+.titulo {
+    font-size: 18px;
+}
+
+.preco {
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px 10px;
+    background-color: #e41818; /* Esse vermelho se parece com o vermelho da Academy SM*/
+    color: #fff; /* Branco */
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: white;
+    color: #e41818;
+}
+
+@media screen and (max-width: 768px) {
+    .cartao-item {
+        width: 70vw;
+        height: 30vh;
+    }
+}
