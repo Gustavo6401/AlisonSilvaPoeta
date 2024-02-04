@@ -1,6 +1,6 @@
 /* _content/AlisonSilvaIdentityUser/Components/ItemCard.razor.rz.scp.css */
 .cartao-item[b-c25ia6o4b0] {
-    border: 1px;
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -32,7 +32,7 @@
 
 @media screen and (max-width: 768px) {
     .cartao-item[b-c25ia6o4b0] {
-        width: 30vw;
+        width: 70vw;
         height: 30vh;
     }
 }

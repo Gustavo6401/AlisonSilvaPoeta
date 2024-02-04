@@ -1,0 +1,42 @@
+﻿@inject IImagemServices services
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer
+
+<h3>Cadastrar Imagens</h3>
+
+<div>
+    <EditForm Model="Imagem" OnSubmit="CadastrarImagemAsync" method="post" FormName="cadastrarImagem">
+        <DataAnnotationsValidator />
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="Imagem.Link" class="form-control" />
+            <label for="link" class="form-label">Link</label>
+            <ValidationMessage For="() => Imagem.Link" class="text-danger"/>
+        </div>
+        <div class="checkbox mb-3">
+            <label class="form-label">
+                <InputCheckbox @bind-Value="Imagem.ImagemPadrao" class="darker-border-checkbox form-check-input" /> 
+                É a Imagem Padrão?
+            </label>
+        </div>
+        <div>
+            <button type="submit" class="w-100 btn btn-lg btn-success">Cadastrar Imagem</button>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    private ImagemViewModel Imagem { get; set; } = new ImagemViewModel();
+
+    [Parameter]
+    public int ProdutoId { get; set; }
+
+    private async Task CadastrarImagemAsync()
+    {
+        Imagem.ProdutoId = ProdutoId;
+        await services.Add(Imagem);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Imagem Cadastrada Com Sucesso");
+
+        StateHasChanged();
+    }
+}

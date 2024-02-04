@@ -40,6 +40,7 @@ builder.Services.AddScoped<ILivroServices, LivroServices>();
 builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
 builder.Services.AddScoped<IComprasServices, CompraServices>();
 builder.Services.AddScoped<IProdutoPedidoServices, ProdutoPedidoServices>();
+builder.Services.AddScoped<IImagemServices, ImagemServices>();
 
 builder.Services.AddAuthentication(options =>
     {

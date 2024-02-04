@@ -28,6 +28,11 @@ namespace AlisonSilvaIdentityUser
             CreateMap<Endereco, EnderecoViewModel>()
                 .ReverseMap();
 
+            CreateMap<ImagemViewModel, Imagens>()
+                .ReverseMap();
+            CreateMap<Imagens, ImagemViewModel>()
+                .ReverseMap();
+
             CreateMap<CompraViewModel, Compra>()
                 .ReverseMap();
             CreateMap<Compra, CompraViewModel>()

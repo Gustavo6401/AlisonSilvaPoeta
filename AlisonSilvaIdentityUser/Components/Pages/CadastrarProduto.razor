@@ -57,8 +57,21 @@
     }
     <button type="submit" class="w-100 btn btn-lg btn-success">Cadastrar</button>
 </EditForm>
+@if(cadastrado == true)
+{
+    <div>
+        <button class="btn btn-primary" @onclick="AdicionarImagem">Adicionar Imagem</button>
+        @for (int i = 0; i <= imagens; i++)
+        {
+            <CadastrarImagem ProdutoId="idProduto" />
+        }
+    </div>
+}
 
 @code {
+    int imagens = 0;
+    int idProduto = 0;
+    bool cadastrado = false;
     ProdutoViewModel vm = new ProdutoViewModel();
     LivroViewModel livroViewModel = new LivroViewModel();
     bool livro = false;
@@ -73,9 +86,13 @@
         await produtoServices.Add(vm);
         List<ProdutoViewModel> listaProdutos = await produtoServices.GetAll();
 
+        cadastrado = true;
+        livroViewModel.ProdutoId = listaProdutos.Last().Id;
+        imagens = 1;
+
         if (livro == true)
-        {
-            livroViewModel.ProdutoId = listaProdutos.Last().Id;
+        {            
+            idProduto = listaProdutos.Last().Id;            
 
             await livroServices.Add(livroViewModel);
 
@@ -85,6 +102,13 @@
         {
             await jsRuntime.InvokeVoidAsync("alert", "Produto Cadastrado com Sucesso!");
         }
+
+        StateHasChanged();
+    }
+
+    private void AdicionarImagem()
+    {
+        imagens++;
 
         StateHasChanged();
     }
