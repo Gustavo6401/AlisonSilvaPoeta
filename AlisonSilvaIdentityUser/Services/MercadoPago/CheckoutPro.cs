@@ -10,7 +10,7 @@ namespace AlisonSilvaIdentityUser.Services.MercadoPago
     {
         public async Task<Preference> PagarAsync(int compraId, decimal total)
         {
-            MercadoPagoConfig.AccessToken = "Meu Token de Acesso";
+            MercadoPagoConfig.AccessToken = "Meu Access Token";
 
             var request = new PreferenceRequest
             {
