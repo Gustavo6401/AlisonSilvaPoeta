@@ -1,5 +1,4 @@
 ﻿using AlisonSilvaIdentityUser.Data;
-using AlisonSilvaIdentityUser.Migrations;
 
 namespace AlisonSilvaIdentityUser.Models
 {

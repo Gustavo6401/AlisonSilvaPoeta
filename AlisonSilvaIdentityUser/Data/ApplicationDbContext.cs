@@ -1,4 +1,3 @@
-using AlisonSilvaIdentityUser.Migrations;
 using AlisonSilvaIdentityUser.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
