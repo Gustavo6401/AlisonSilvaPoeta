@@ -15,7 +15,6 @@ namespace AlisonSilvaIdentityUser.Data
         public string? CPF { get; set; }
 
         public Cliente? Cliente { get; set; }
-        public int ClienteId { get; set; }
 
         public Roles? Role { get; set; }
         public int RoleId { get; set; }

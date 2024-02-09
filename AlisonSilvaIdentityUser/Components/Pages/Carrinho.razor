@@ -31,7 +31,7 @@
         <tbody>
             @if (loaded == true)
             {
-                @foreach (var item in listaProdutos)
+                @foreach (var item in listaProdutos!)
                 {
                     <tr>
                         <td>@item.IdProduto</td>
@@ -64,6 +64,8 @@
     </table>
 </div>
 
+<h2>Frete: R$ 5,00</h2>
+
 <a href="/Compra" class="w-100 btn btn-lg btn-success">Seguir para a Tela de Compra</a>
 
 @code {
@@ -91,10 +93,10 @@
 
     private async Task AdicionarItem(int id)
     {
-        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        cartItem.Quantidade++;
+        CartViewModel? cartItem = listaProdutos!.FirstOrDefault(t => t.IdProduto == id);
+        cartItem!.Quantidade++;
 
-        listaProdutos.Remove(cartItem);
+        listaProdutos!.Remove(cartItem);
         listaProdutos.Add(cartItem);
 
         await localStorage.DeleteAsync("Cart");
@@ -105,10 +107,10 @@
 
     private async Task RemoverItem(int id)
     {
-        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        cartItem.Quantidade--;
+        CartViewModel? cartItem = listaProdutos!.FirstOrDefault(t => t.IdProduto == id);
+        cartItem!.Quantidade--;
 
-        listaProdutos.Remove(cartItem);
+        listaProdutos!.Remove(cartItem);
         listaProdutos.Add(cartItem);
 
         if (cartItem.Quantidade <= 0)
@@ -124,8 +126,8 @@
 
     private async Task Remover(int id)
     {
-        CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        listaProdutos.Remove(cartItem);
+        CartViewModel? cartItem = listaProdutos!.FirstOrDefault(t => t.IdProduto == id);
+        listaProdutos!.Remove(cartItem!);
 
         await localStorage.DeleteAsync("Cart");
         await localStorage.SetAsync("Cart", listaProdutos);
