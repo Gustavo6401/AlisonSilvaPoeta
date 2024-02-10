@@ -38,9 +38,6 @@ namespace AlisonSilvaIdentityUser.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
