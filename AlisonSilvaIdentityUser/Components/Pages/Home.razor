@@ -2,6 +2,9 @@
 
 @inject ILivroServices livroServices
 @inject IProdutoServices produtoServices
+@inject IImagemServices imagemServices
+
+@rendermode InteractiveServer
 
 @attribute [AllowAnonymous]
 
@@ -21,7 +24,7 @@
         <div class="row">
             @foreach (var item in listaProdutos!)
             {
-                <ItemCard Item="item" />
+                <ItemCard Item="item" Imagens="ConsultarListaImagens(item.Id)" />
             }
         </div>
     </div>
@@ -35,5 +38,10 @@
         listaProdutos = await produtoServices.GetAll();
 
         StateHasChanged();
+    }
+
+    private async Task<List<ImagemViewModel>> ConsultarListaImagens(int idProduto)
+    {
+        return await imagemServices.ConsultarPorIdProduto(idProduto);
     }
 }

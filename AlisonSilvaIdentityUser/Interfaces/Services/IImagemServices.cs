@@ -6,6 +6,6 @@ namespace AlisonSilvaIdentityUser.Interfaces.Services
 {
     public interface IImagemServices : IServicesBase<ImagemViewModel, Imagens>
     {
-        Task<ImagemViewModel> ConsultarPorIdProduto(int id);
+        Task<List<ImagemViewModel>> ConsultarPorIdProduto(int id);
     }
 }

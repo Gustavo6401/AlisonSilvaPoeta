@@ -5,5 +5,6 @@ namespace AlisonSilvaIdentityUser.Interfaces.Repositories
 {
     public interface IImagensRepository : IRepository<Imagens>
     {
+        Task<List<Imagens>> GetByProductId(int id);
     }
 }

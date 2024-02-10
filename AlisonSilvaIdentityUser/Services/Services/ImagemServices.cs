@@ -9,13 +9,19 @@ namespace AlisonSilvaIdentityUser.Services.Services
 {
     public class ImagemServices : ServicesBase<ImagemViewModel, Imagens>, IImagemServices
     {
+        private readonly IImagensRepository _repository;
+        private readonly IMapper _mapper;
         public ImagemServices(IMapper mapper, IImagensRepository repository) : base(mapper, repository)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public Task<ImagemViewModel> ConsultarPorIdProduto(int id)
+        public async Task<List<ImagemViewModel>> ConsultarPorIdProduto(int id)
         {
-            throw new NotImplementedException();
+            List<Imagens> listaImagens = await _repository.GetByProductId(id);
+
+            return _mapper.Map<List<Imagens>, List<ImagemViewModel>>(listaImagens);
         }
     }
 }
