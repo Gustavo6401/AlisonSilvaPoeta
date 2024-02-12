@@ -1,0 +1,257 @@
+[33mcommit 83354fb5421f5f2e17c35dad77e029776dd71f8e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sat Feb 10 13:17:43 2024 -0300
+
+    Tela de Política de Privacidade
+
+[33mcommit cd05b30478fdf055e070c8a29a51af7c2ffb8328[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Fri Feb 9 14:24:19 2024 -0300
+
+    Exclusão de Chave Estrangeira
+
+[33mcommit eb99898c40b1026716df7ea00181190dd6000293[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Wed Feb 7 15:40:03 2024 -0300
+
+    Pronto para publica
+
+[33mcommit 2ac0a04a79d29daa4142d22a0bd9b5a2736c8eee[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sun Feb 4 17:49:20 2024 -0300
+
+    Vou Publicar
+
+[33mcommit 133dc2ac6a5c5f14093fed60a3cf6eb179d196ce[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sun Feb 4 12:44:36 2024 -0300
+
+    Imagens no Banco de Dados
+
+[33mcommit 73ebd19000e914339382bb01819f74bec0e697ad[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sat Feb 3 12:44:58 2024 -0300
+
+    CSS da primeira página
+
+[33mcommit 1c38b87c05012ee7cc74ee6df3be031d54b1ab75[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Wed Jan 31 13:47:59 2024 -0300
+
+    Usuário pode modificar dados da compra
+
+[33mcommit 899c35cfaef6ffc213d588d98f4074b0d0c65d3a[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Wed Jan 31 13:27:04 2024 -0300
+
+    Excluída a coluna de forma de pagamento
+
+[33mcommit 4988edfb93a590a39d03bb4dea1c180dfa371bf7[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Wed Jan 31 12:24:45 2024 -0300
+
+    TERMINAMO PORRAgit add .! FALTA SÓ O DESIGN!
+
+[33mcommit 10989d48a2f8ec6e65d69cdc9f18f3552744ea70[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 30 19:54:41 2024 -0300
+
+    Migração completa
+
+[33mcommit 5dd5f4b01ad03616a1510d035d6b73d8e3e83e59[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 30 12:16:29 2024 -0300
+
+    Migração Completa
+
+[33mcommit 059a2967a1ae1a35ea9b517060aed6849a5b8339[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 30 11:45:34 2024 -0300
+
+    Tela de Cadastro de Compra
+
+[33mcommit fa78c5658e7c97aadee05cdc03586b70a44490bb[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 30 01:37:01 2024 -0300
+
+    Tela de Cadastro de Endereço
+
+[33mcommit 8fa199a735ccf7ddce991331d10620ec5c9f4efc[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 30 00:10:38 2024 -0300
+
+    Tela de Carrinho
+
+[33mcommit caf9ad351b4096855ab55f4d957c761253b56d7e[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 23:55:04 2024 -0300
+
+    Página Inicial e Página de Detalhes de Produto
+
+[33mcommit 4726b29449910caa7e9b6c5c08ae1e192b555f49[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 23:33:14 2024 -0300
+
+    Tela de Cadastro de Produto
+
+[33mcommit 85476274330f0dbb11e59e9d65d6746efb201c78[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 20:50:47 2024 -0300
+
+    Criado Script para Gerar Usuário Administrador
+
+[33mcommit 8d5d64b2e71a2835fe3c65049087090477e6f069[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 19:43:13 2024 -0300
+
+    Gateway de Pagamento
+
+[33mcommit 9e5b4a00ff74e4601e3abddf4fa6fd6320e5ebab[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 19:34:06 2024 -0300
+
+    Migradas as classes Services.
+
+[33mcommit 6b926725b501ec92dca08db3702d300a93af9e17[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 16:07:45 2024 -0300
+
+    Adicionar AutoMapper
+
+[33mcommit 24d742d4e65a0cd5ebd700ea58de59c97578709c[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 13:02:40 2024 -0300
+
+    Configuração Cookie de Autenticação
+
+[33mcommit 21f94648ae58f9d90cdefa56922e40483e09fd0d[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 01:40:55 2024 -0300
+
+    Interfaces e Classes Repository
+
+[33mcommit fbb0a00816146b7b67d5eac3ce0325b51a6f6009[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 00:56:01 2024 -0300
+
+    Models Adicionados
+
+[33mcommit 688720c21354bee3a79132900b98f7bd9a8f97c6[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 29 00:18:03 2024 -0300
+
+    Feitos Modelos parte Login
+
+[33mcommit 15bd437ca0752b0656ccc2bed105ad57ea384909[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sun Jan 28 20:50:53 2024 -0300
+
+    Plano C
+
+[33mcommit b93462184fa16b146f2305d1880b2533940398d9[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sun Jan 28 18:59:25 2024 -0300
+
+    Recriando a Aplicação
+
+[33mcommit 346997b9ac529f5f26dd43f0520d8e65150597d4[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 25 12:41:39 2024 -0300
+
+    Vou adicionar o Identity
+
+[33mcommit b6c9040ff1b8cca15829553413ca478af72876fe[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 18 21:50:30 2024 -0300
+
+    Parte do Pagamento Quase Concluída
+
+[33mcommit 4c7c9fedec0aa2da9275d1905c56d7793d510c73[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 15 20:46:53 2024 -0300
+
+    Tela de Detalhes de compra
+
+[33mcommit 45b5b656d2ea0abe10693f15072eb79ac17ddf19[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sat Jan 13 16:34:11 2024 -0300
+
+    Tela de Compras
+
+[33mcommit 5ce440f21b19b36cbbf5ad4d321bbaf9246d546d[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Sat Jan 13 11:29:03 2024 -0300
+
+    Tela de Editar Cadastro
+
+[33mcommit d4bdbc3e96604a03afb737c612e703da3584ab96[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Fri Jan 12 12:11:06 2024 -0300
+
+    Tela de Perfil de Usuário
+
+[33mcommit 37c3050b86343aabd11b5afa8577a3e9f579e5ba[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Fri Jan 12 11:36:22 2024 -0300
+
+    Cadastro de Endereço
+
+[33mcommit 1422763e7c34e391b108f8f19d85d8af59f3bf8a[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 11 22:41:16 2024 -0300
+
+    Tela de Cadastro de Endereço, ficar de olho na tela de Cadastro de Usuário.
+
+[33mcommit 042e3f2c3d216412e35a5f0cd4ca7fc7c37bde7b[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 11 20:06:57 2024 -0300
+
+    Tela de Carrinho
+
+[33mcommit cd455cf16fe476c4f5dd2c26393f0115a7cb6fd0[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Tue Jan 9 14:22:29 2024 -0300
+
+    Detalhes de Produto
+
+[33mcommit fcfc851ccd188df5c709188fc12b8b75a5f5c4ba[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 8 18:29:25 2024 -0300
+
+    Tela de Produtos
+
+[33mcommit c9bfd56139d2275eaedf16a9e0d863bc73e73ffe[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Mon Jan 8 10:12:31 2024 -0300
+
+    Tela de Cadastro de Produto
+
+[33mcommit 944640f26b224d48c7f3e84ff3b264a1a442ad72[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Fri Jan 5 13:53:44 2024 -0300
+
+    Tela de Login, Melhorias no Código
+
+[33mcommit 45b8bce2d634516ba0d38716796ebd6dfacd4821[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 4 17:49:31 2024 -0300
+
+    Esquema de Autenticação e Login
+
+[33mcommit e587b0a8681866e1dceac550feeeb159e84837c7[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 4 14:17:20 2024 -0300
+
+    Tela de Cadastro de Usuário
+
+[33mcommit cbc90ecb2dfcd0e4ebcba5787a0c26f3b0032ce1[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 4 11:32:29 2024 -0300
+
+    Barra de Navegação.
+
+[33mcommit 69b7382074a171d2904b1b200adaedb91f4eb513[m
+Author: Gustavo6401 <gsoey2019123@gmail.com>
+Date:   Thu Jan 4 10:32:59 2024 -0300
+
+    Feito o Banco de Dados
