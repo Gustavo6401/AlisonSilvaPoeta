@@ -264,6 +264,10 @@ namespace AlisonSilvaIdentityUser.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<decimal>("Frete")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<decimal>("Preco")
                         .HasPrecision(5, 2)
                         .HasColumnType("decimal(5,2)");

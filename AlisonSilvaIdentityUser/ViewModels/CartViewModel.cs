@@ -10,13 +10,14 @@ namespace AlisonSilvaIdentityUser.ViewModels
 
         }
 
-        public CartViewModel(int idProduto, string nome, string codBarras, decimal preco, int quantidade)
+        public CartViewModel(int idProduto, string nome, string codBarras, decimal preco, int quantidade, decimal frete)
         {
             IdProduto = idProduto;
             Nome = nome;
             CodBarras = codBarras;
             Preco = preco;
             Quantidade = quantidade;
+            Frete = frete;
         }
         public int IdProduto { get; set; }
         [Required]
@@ -28,9 +29,22 @@ namespace AlisonSilvaIdentityUser.ViewModels
         [Required]
         [Precision(5, 2)]
         public decimal Preco { get; set; }
+        [Precision(5, 2)]
+        public decimal Frete { get; set; }
         [Required]
         public int Quantidade { get; set; }
         [Precision(7, 2)]
-        public decimal Total { get { return Quantidade * Preco; } }
+        public decimal Total { get 
+            { 
+                if (Quantidade > 1) 
+                {
+                    return Quantidade * Preco;
+                }
+                else
+                {
+                    return Quantidade * (Preco + Frete);
+                }
+            } 
+        }
     }
 }

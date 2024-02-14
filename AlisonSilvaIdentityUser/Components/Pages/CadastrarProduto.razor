@@ -34,6 +34,11 @@
         <label class="control-label" for="custo">Custo</label>
         <ValidationMessage For="() => vm.Custo" />
     </div>
+    <div class="form-group mb-3">
+        <InputNumber @bind-Value="vm.Frete" class="form-control" />
+        <label class="control-label" for="frete">Frete</label>
+        <ValidationMessage For="() => vm.Frete" />
+    </div>
     <div class="form-floating mb-3">
         <InputText @bind-Value="vm.CodigoBarras" class="form-control" />
         <label class="control-label" for="codigoBarras">Código de Barras</label>

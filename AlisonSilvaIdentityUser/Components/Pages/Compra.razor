@@ -141,17 +141,24 @@
         if (firstRender)
         {
             var result1 = await sessionStorage.GetAsync<ApplicationUser>("UserSession");
-            usuario = result1.Value;
-            email = usuario.Email;
+            usuario = result1.Value!;
+            email = usuario.Email!;
 
             ClienteViewModel cliente = await clienteServices.GetByUsuarioId(usuario.Id);
             listaEnderecos = await enderecoServices.GetEnderecosByClienteId(cliente.Id);
 
             var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
-            listaProdutos = result.Value;
+            listaProdutos = result.Value!;
             loaded = true;
 
-            total = listaProdutos.Sum(p => p.Total);
+            if(listaProdutos.Count > 1)
+            {
+                total = listaProdutos.Sum(p => p.Preco);
+            }
+            else
+            {
+                total = listaProdutos.Sum(p => p.Total);
+            }
 
             StateHasChanged();
         }
@@ -188,7 +195,7 @@
     private void AdicionarItem(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        cartItem.Quantidade++;
+        cartItem!.Quantidade++;
 
         StateHasChanged();
     }
@@ -196,7 +203,7 @@
     private void RemoverItem(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        cartItem.Quantidade--;
+        cartItem!.Quantidade--;
 
         if (cartItem.Quantidade <= 0)
         {
@@ -209,7 +216,7 @@
     private void Remover(int id)
     {
         CartViewModel? cartItem = listaProdutos.FirstOrDefault(t => t.IdProduto == id);
-        listaProdutos.Remove(cartItem);
+        listaProdutos.Remove(cartItem!);
 
         StateHasChanged();
     }

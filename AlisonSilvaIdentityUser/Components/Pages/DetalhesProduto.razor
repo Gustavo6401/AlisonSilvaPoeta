@@ -14,15 +14,17 @@
     <dl>
         <dt>Título</dt>
         <dd>@produto.Titulo</dd>
-    <dt>Descricao</dt>
-    <dd>@produto.Descricao</dd>
-    <dt>Preço</dt>
-    <dd>@produto.Preco.ToString("C2")</dd>
-    @if (livro == null)
-    {
-        <dt>Código de Barras</dt>
-        <dd>@produto.CodigoBarras</dd>
-    }
+        <dt>Descricao</dt>
+        <dd>@produto.Descricao</dd>
+        <dt>Preço</dt>
+        <dd>@produto.Preco.ToString("C2")</dd>
+        <dt>Frete</dt>
+        <dd>@produto.Frete.ToString("C2")</dd>
+        @if (livro == null)
+        {
+            <dt>Código de Barras</dt>
+            <dd>@produto.CodigoBarras</dd>
+        }
     @if (livro != null)
     {
         <dt>ISBN</dt>
@@ -31,7 +33,7 @@
         <dd>@livro.NumeroPaginas</dd>
     }
 </dl>
-<button class="btn btn-success" @onclick="async () => await AdicionarAoCarrinho(produto.Id, produto.Titulo, CodBarrasOuISBN(), produto.Preco)"><i class="bi bi-cart-check-fill"></i> Adicionar ao Carrinho</button>
+<button class="btn btn-success" @onclick="async () => await AdicionarAoCarrinho(produto.Id, produto.Titulo!, CodBarrasOuISBN()!, produto.Preco, produto.Frete)"><i class="bi bi-cart-check-fill"></i> Adicionar ao Carrinho</button>
 
 @code {
     [Parameter]
@@ -56,7 +58,7 @@
         StateHasChanged();
     }
 
-    private async Task AdicionarAoCarrinho(int id, string nomeProduto, string codBarras, decimal preco)
+    private async Task AdicionarAoCarrinho(int id, string nomeProduto, string codBarras, decimal preco, decimal frete)
     {
         // Carrega a lista de todos os itens adicionados ao carrinho.
         var result = await localStorage.GetAsync<List<CartViewModel>>("Cart");
@@ -68,7 +70,7 @@
             listaCarrinho = new List<CartViewModel>();
 
             // Adiciona o item ao carrinho.
-            listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1));
+            listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1, frete));
 
             // Adiciona o Carrinho ao Armazenamento local.
             await localStorage.SetAsync("Cart", listaCarrinho);
@@ -87,7 +89,7 @@
                 await localStorage.DeleteAsync("Cart");
 
                 // Adiciona o item ao carrinho.
-                listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1));
+                listaCarrinho.Add(new CartViewModel(id, nomeProduto, codBarras, preco, 1, frete));
 
                 // Adiciona o Carrinho ao Armazenamento local.
                 await localStorage.SetAsync("Cart", listaCarrinho);

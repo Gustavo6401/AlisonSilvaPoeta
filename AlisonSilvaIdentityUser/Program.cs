@@ -5,6 +5,7 @@ using AlisonSilvaIdentityUser.Interfaces.Repositories;
 using AlisonSilvaIdentityUser.Interfaces.Services;
 using AlisonSilvaIdentityUser.Models;
 using AlisonSilvaIdentityUser.Repositories;
+using AlisonSilvaIdentityUser.Services.Frete;
 using AlisonSilvaIdentityUser.Services.MercadoPago;
 using AlisonSilvaIdentityUser.Services.Services;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -24,6 +25,7 @@ builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<AlisonSilvaIdentityUser.Services.MercadoPago.CheckoutPro>();
+builder.Services.AddScoped<FreteServices>();
 
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();

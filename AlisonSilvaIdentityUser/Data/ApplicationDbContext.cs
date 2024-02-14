@@ -102,6 +102,10 @@ namespace AlisonSilvaIdentityUser.Data
                         .IsRequired();
 
             builder.Entity<Produto>()
+                .Property(p => p.Frete)
+                    .HasPrecision(5, 2);
+
+            builder.Entity<Produto>()
                 .Property(l => l.Custo)
                     .HasPrecision(5, 2)
                         .IsRequired();
