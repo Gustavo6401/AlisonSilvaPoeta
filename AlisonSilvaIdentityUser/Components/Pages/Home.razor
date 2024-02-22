@@ -29,10 +29,16 @@
 
 @code {
     List<ProdutoViewModel>? listaProdutos = new List<ProdutoViewModel>();
+    List<ImagemViewModel> listaImagens = new List<ImagemViewModel>();
 
     protected override async Task OnInitializedAsync()
     {
         listaProdutos = await produtoServices.GetAll();
+
+        foreach(var item in listaProdutos!)
+        {
+            
+        }
 
         StateHasChanged();
     }
