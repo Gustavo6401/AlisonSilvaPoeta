@@ -2,6 +2,7 @@
 
 @inject ILivroServices livroServices
 @inject IProdutoServices produtoServices
+@inject IImagemServices imagemServices
 
 @attribute [AllowAnonymous]
 
@@ -19,9 +20,9 @@
         </div>
         <hr class="mt-3" />
         <div class="row">
-            @foreach (var item in listaProdutos!)
+            @for(int i = 0; i < listaProdutos!.Count; i++)
             {
-                <ItemCard Item="item" />
+                <ItemCard Item="listaProdutos.ElementAt(i)" Imagem="listaImagens!.ElementAt(i)" />
             }
         </div>
     </div>
@@ -29,7 +30,7 @@
 
 @code {
     List<ProdutoViewModel>? listaProdutos = new List<ProdutoViewModel>();
-    List<ImagemViewModel> listaImagens = new List<ImagemViewModel>();
+    List<ImagemViewModel>? listaImagens = new List<ImagemViewModel>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -37,8 +38,11 @@
 
         foreach(var item in listaProdutos!)
         {
-            
+            listaImagens!.Add(await imagemServices.GetImagemPadrao(item.Id));
         }
+
+        listaImagens = listaImagens!.OrderBy(i => i.ProdutoId)
+                        .ToList();
 
         StateHasChanged();
     }
