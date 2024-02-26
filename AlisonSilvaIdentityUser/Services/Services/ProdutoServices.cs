@@ -9,11 +9,18 @@ namespace AlisonSilvaIdentityUser.Services.Services;
 
 public class ProdutoServices : ServicesBase<ProdutoViewModel, Produto>, IProdutoServices
 {
-    private IMapper Mapper;
-    private IProdutoRepository Repository;
+    private IMapper _mapper;
+    private IProdutoRepository _repository;
     public ProdutoServices(IMapper mapper, IProdutoRepository repository) : base(mapper, repository)
     {
-        Mapper = mapper;
-        Repository = repository;
+        _mapper = mapper;
+        _repository = repository;
+    }
+
+    public async Task<List<ProdutoViewModel>> ListarPorNome(string nome)
+    {
+        List<Produto>? listaProdutos = await _repository.ListarPorNome(nome)!;
+
+        return _mapper.Map<List<Produto>, List<ProdutoViewModel>>(listaProdutos);
     }
 }

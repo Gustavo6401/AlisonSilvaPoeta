@@ -6,5 +6,6 @@ namespace AlisonSilvaIdentityUser.Interfaces.Services
 {
     public interface IProdutoServices : IServicesBase<ProdutoViewModel, Produto>
     {
+        Task<List<ProdutoViewModel>> ListarPorNome(string nome);
     }
 }
