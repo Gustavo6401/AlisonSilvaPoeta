@@ -15,8 +15,8 @@
         <div class="col-12 col-md-5">
             <div class="justify-content-center justify-content-center-md-start mb-3 mb-md-0">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" placeholder="Digite seu Produto Procurado" />
-                    <button class="btn btn-info">Digite seu Produto Desejado</button>
+                    <input type="text" class="form-control" placeholder="Digite seu Produto Procurado" @bind-value="nome" />
+                    <button class="btn btn-info" @onclick="async () => await ConsultarNome(nome)">Digite seu Produto Desejado</button>
                 </div>
             </div>
         </div>
@@ -33,6 +33,7 @@
 @code {
     List<ProdutoViewModel>? listaProdutos = new List<ProdutoViewModel>();
     List<ImagemViewModel>? listaImagens = new List<ImagemViewModel>();
+    string nome = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -49,4 +50,18 @@
         StateHasChanged();
     }
 
+    private async Task ConsultarNome(string nome)
+    {
+        listaProdutos = await produtoServices.ListarPorNome(nome);
+
+        foreach (var item in listaProdutos!)
+        {
+            listaImagens!.Add(await imagemServices.GetImagemPadrao(item.Id));
+        }
+
+        listaImagens = listaImagens!.OrderBy(i => i.ProdutoId)
+                        .ToList();
+
+        StateHasChanged();
+    }
 }
