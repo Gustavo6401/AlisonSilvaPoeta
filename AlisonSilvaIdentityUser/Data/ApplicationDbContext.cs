@@ -19,6 +19,7 @@ namespace AlisonSilvaIdentityUser.Data
         public DbSet<Imagens> Imagens { get; set; }
         public DbSet<Compra> Compras { get; set; }
         public DbSet<ProdutoPedido> ProdutoPedidos { get; set; }
+        public DbSet<Depoimentos> Depoimentos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -157,6 +158,17 @@ namespace AlisonSilvaIdentityUser.Data
                 .Property(pp => pp.QtdVendida)
                     .IsRequired();
 
+            builder.Entity<Depoimentos>().HasKey(d => d.Id);
+
+            builder.Entity<Depoimentos>()
+                .Property(d => d.Texto)
+                    .HasMaxLength(1000)
+                        .IsRequired();
+
+            builder.Entity<Depoimentos>()
+                .Property(d => d.DataPostagem)
+                    .IsRequired();
+
             builder.Entity<Roles>()
                 .HasMany(r => r.Users)
                     .WithOne(u => u.Role)
@@ -168,6 +180,11 @@ namespace AlisonSilvaIdentityUser.Data
                 .WithOne(c => c.Usuario)
                     .HasForeignKey<Cliente>(c => c.UsuarioId)
                          .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(a => a.Depoimentos)
+                    .WithOne(d => d.Usuario)
+                        .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Cliente>()
                 .HasMany(c => c.Enderecos)

@@ -147,6 +147,33 @@ namespace AlisonSilvaIdentityUser.Migrations
                     b.ToTable("Compras");
                 });
 
+            modelBuilder.Entity("AlisonSilvaIdentityUser.Models.Depoimentos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DataPostagem")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Depoimentos");
+                });
+
             modelBuilder.Entity("AlisonSilvaIdentityUser.Models.Endereco", b =>
                 {
                     b.Property<int>("Id")
@@ -456,6 +483,17 @@ namespace AlisonSilvaIdentityUser.Migrations
                     b.Navigation("Endereco");
                 });
 
+            modelBuilder.Entity("AlisonSilvaIdentityUser.Models.Depoimentos", b =>
+                {
+                    b.HasOne("AlisonSilvaIdentityUser.Data.ApplicationUser", "Usuario")
+                        .WithMany("Depoimentos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("AlisonSilvaIdentityUser.Models.Endereco", b =>
                 {
                     b.HasOne("AlisonSilvaIdentityUser.Models.Cliente", "Cliente")
@@ -511,6 +549,8 @@ namespace AlisonSilvaIdentityUser.Migrations
             modelBuilder.Entity("AlisonSilvaIdentityUser.Data.ApplicationUser", b =>
                 {
                     b.Navigation("Cliente");
+
+                    b.Navigation("Depoimentos");
                 });
 
             modelBuilder.Entity("AlisonSilvaIdentityUser.Models.Cliente", b =>

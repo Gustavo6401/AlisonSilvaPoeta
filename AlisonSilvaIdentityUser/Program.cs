@@ -4,6 +4,8 @@ using AlisonSilvaIdentityUser.Data;
 using AlisonSilvaIdentityUser.Interfaces.Repositories;
 using AlisonSilvaIdentityUser.Interfaces.Services;
 using AlisonSilvaIdentityUser.Models;
+using AlisonSilvaIdentityUser.Models.MongoDBCollections.NoticiasDB;
+using AlisonSilvaIdentityUser.Models.MongoDBCollections.PoesiasDB;
 using AlisonSilvaIdentityUser.Repositories;
 using AlisonSilvaIdentityUser.Services.Frete;
 using AlisonSilvaIdentityUser.Services.MercadoPago;
@@ -57,6 +59,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 });
+
+builder.Services.Configure<NoticiasDbSettings>(builder.Configuration.GetSection("Noticias"));
+builder.Services.Configure<PoesiasDbSettings>(builder.Configuration.GetSection("Poesias"));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

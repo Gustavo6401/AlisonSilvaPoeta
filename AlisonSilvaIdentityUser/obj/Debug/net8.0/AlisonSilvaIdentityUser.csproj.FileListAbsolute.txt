@@ -141,3 +141,16 @@ C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comér
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MercadoPago.dll
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\obj\Debug\net8.0\scopedcss\Components\ItemCard.razor.rz.scp.css
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\DnsClient.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\Snappier.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Gustavo\Documents\Gustavo TI\Programação\C#\Projetos-Freelance\Comércios Digitais\Blazor Server\AlisonSilvaPoeta\AlisonSilvaIdentityUser\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
