@@ -7,6 +7,7 @@ using AlisonSilvaIdentityUser.Models;
 using AlisonSilvaIdentityUser.Models.MongoDBCollections.NoticiasDB;
 using AlisonSilvaIdentityUser.Models.MongoDBCollections.PoesiasDB;
 using AlisonSilvaIdentityUser.Repositories;
+using AlisonSilvaIdentityUser.Repositories.MongoDBRepositories;
 using AlisonSilvaIdentityUser.Services.Frete;
 using AlisonSilvaIdentityUser.Services.MercadoPago;
 using AlisonSilvaIdentityUser.Services.Services;
@@ -38,6 +39,7 @@ builder.Services.AddScoped<ICompraRepository, ComprasRepository>();
 builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
 builder.Services.AddScoped<IDepoimentoRepository, DepoimentoRepository>();
 builder.Services.AddScoped<ApplicationUserRepository>();
+builder.Services.AddScoped<PoesiaRepository>();
 
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
 builder.Services.AddScoped<IProdutoServices, ProdutoServices>();

@@ -1,0 +1,24 @@
+﻿@page "/CadastroPoesia"
+
+@using AlisonSilvaIdentityUser.Models.MongoDBCollections.PoesiasDB
+
+@attribute [Authorize(Roles = "Administrador")]
+
+<PageTitle>Cadastro de Poesia</PageTitle>
+
+<h3>Poesia Diária</h3>
+
+<EditForm Model="poesia" FormName="CadastrarPoesia">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="titulo">Título</label>
+        <InputText @bind-Value="poesia.Titulo" class="form-control" />
+        <ValidationMessage For="() => poesia.Titulo" />
+    </div>
+</EditForm>
+
+@code {
+    Poesia poesia = new Poesia();
+
+
+}
