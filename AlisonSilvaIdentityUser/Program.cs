@@ -36,6 +36,7 @@ builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IImagensRepository, ImagensRepository>();
 builder.Services.AddScoped<ICompraRepository, ComprasRepository>();
 builder.Services.AddScoped<IProdutoPedidoRepository, ProdutoPedidoRepository>();
+builder.Services.AddScoped<IDepoimentoRepository, DepoimentoRepository>();
 builder.Services.AddScoped<ApplicationUserRepository>();
 
 builder.Services.AddScoped<IClienteServices, ClienteServices>();
@@ -45,6 +46,7 @@ builder.Services.AddScoped<IEnderecoServices, EnderecoServices>();
 builder.Services.AddScoped<IComprasServices, CompraServices>();
 builder.Services.AddScoped<IProdutoPedidoServices, ProdutoPedidoServices>();
 builder.Services.AddScoped<IImagemServices, ImagemServices>();
+builder.Services.AddScoped<IDepoimentoServices, DepoimentoServices>();
 
 builder.Services.AddAuthentication(options =>
     {

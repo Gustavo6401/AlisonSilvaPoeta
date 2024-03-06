@@ -1,0 +1,9 @@
+﻿<div class="carousel-item active">
+    <h4>@DepoimentoViewModel!.DataPostagem!.Value.Date</h4>
+    <p>@DepoimentoViewModel.Texto</p>
+</div>
+
+@code {
+    [Parameter]
+    public DepoimentosViewModel? DepoimentoViewModel { get; set; }
+}

@@ -1,0 +1,22 @@
+﻿@inject IDepoimentoServices services
+
+<h3>Depoimentos</h3>
+
+@foreach (var item in lista)
+{
+    <div>
+        <p>"@item.Texto"</p>
+    </div>
+    <hr />
+}
+
+@code {
+    private List<DepoimentosViewModel> lista = new List<DepoimentosViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        lista = await services.GetAll();
+
+        StateHasChanged();
+    }
+}

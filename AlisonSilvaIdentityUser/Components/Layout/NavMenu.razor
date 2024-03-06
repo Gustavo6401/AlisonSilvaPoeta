@@ -68,6 +68,14 @@
         <div class="nav-item px-3">
             <a class="nav-link" href="/Privacidade">Política de Privacidade</a>
         </div>
+        <div class="nav-item px-3">
+            <a class="nav-link" href="/Sobre">Sobre Mim</a>
+        </div>
+        <AuthorizeView>
+            <div class="nav-item px-3">
+                <a class="nav-link" href="/Depoimentos/Cadastro/@context.User.Identity?.Name">Cadastre seu Depoimento</a>
+            </div>
+        </AuthorizeView>
     </nav>
 </div>
 

@@ -182,8 +182,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDaGVja291dFByby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/Auth.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdXRoLnJhem9y
+[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Depoimento.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXBvaW1lbnRvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Depoimentos.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXBvaW1lbnRvcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/CadastrarDepoimento.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWRhc3RyYXJEZXBvaW1lbnRvLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/CadastrarProduto.razor]
@@ -200,10 +208,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/ConsultarCompra.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb25zdWx0YXJDb21wcmEucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/DetalhesCompra.razor]
@@ -230,8 +234,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcml2YWNpZGFkZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+[C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Pages/SobreMim.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTb2JyZU1pbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Gustavo/Documents/Gustavo TI/Programação/C\#/Projetos-Freelance/Comércios Digitais/Blazor Server/AlisonSilvaPoeta/AlisonSilvaIdentityUser/Components/Routes.razor]

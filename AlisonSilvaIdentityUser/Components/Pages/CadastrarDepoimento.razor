@@ -1,0 +1,63 @@
+﻿@page "/Depoimentos/Cadastro/{email}"
+
+@using AlisonSilvaIdentityUser.Data
+
+@inject ApplicationUserRepository repository
+@inject IDepoimentoServices services
+@inject IJSRuntime JsRuntime
+@inject NavigationManager Navigation
+
+@attribute [Authorize]
+
+@rendermode InteractiveServer
+
+<h3>Cadastrar Depoimento</h3>
+
+<p>Seus dados ficarão anônimos. Para mais informações, consulte a nossa <a href="/Privacidade">Política de Privacidade</a></p>
+
+<EditForm Model="Depoimento" OnSubmit="InserirDepoimento" method="post" FormName="CadastrarDepoimento">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label class="form-label" for="texto">Texto do Depoimento</label>
+        <InputTextArea @bind-Value="Depoimento.Texto" class="form-control" />
+        <ValidationMessage For="() => Depoimento.Texto" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" type="submit">Cadastrar Depoimento</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? Email { get; set; }
+
+    [Parameter]
+    public int UsuarioId { get; set; }
+
+    DepoimentosViewModel Depoimento = new DepoimentosViewModel();
+    // string depoimento = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        ApplicationUser usuario = await repository.GetByUserName(Email!);
+
+        UsuarioId = usuario.Id;
+
+        StateHasChanged();
+    }
+
+    public async Task InserirDepoimento()
+    {
+        Depoimento!.DataPostagem = DateTime.Now;
+        Depoimento!.UsuarioId = UsuarioId;
+        //Depoimento!.Texto = depoimento;
+
+        await services.Add(Depoimento);
+
+        await JsRuntime.InvokeVoidAsync("alert", "Depoimento Cadastrado com Sucesso");
+
+        StateHasChanged();
+
+        Navigation.NavigateTo("/Sobre");
+    }
+}

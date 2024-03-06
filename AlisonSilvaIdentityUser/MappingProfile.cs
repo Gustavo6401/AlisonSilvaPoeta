@@ -1,4 +1,5 @@
-﻿using AlisonSilvaIdentityUser.Models;
+﻿using AlisonSilvaIdentityUser.Components;
+using AlisonSilvaIdentityUser.Models;
 using AlisonSilvaIdentityUser.ViewModels;
 using AutoMapper;
 
@@ -41,6 +42,11 @@ namespace AlisonSilvaIdentityUser
             CreateMap<ProdutoPedidoViewModel, ProdutoPedido>()
                 .ReverseMap();
             CreateMap<ProdutoPedido, ProdutoPedidoViewModel>()
+                .ReverseMap();
+
+            CreateMap<DepoimentosViewModel, Models.Depoimentos>()
+                .ReverseMap();
+            CreateMap<Models.Depoimentos, DepoimentosViewModel>()
                 .ReverseMap();
         }
     }
