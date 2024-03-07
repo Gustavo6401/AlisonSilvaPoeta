@@ -1,0 +1,31 @@
+﻿@page "/Poesia"
+
+@using AlisonSilvaIdentityUser.Models.MongoDBCollections.PoesiasDB
+@using AlisonSilvaIdentityUser.Repositories.MongoDBRepositories
+
+@inject PoesiaRepository repository
+
+@attribute [AllowAnonymous]
+
+@rendermode InteractiveServer
+
+<PageTitle>Poesias</PageTitle>
+
+<h3>Poesias Diárias</h3>
+
+@foreach (var item in lista)
+{
+    <h4>@item.Titulo</h4>
+    <b>@item.DataPublicacao</b>
+    <p>@(new MarkupString(item.Texto!.Replace("\n", "<br>")))</p>
+    <hr />
+}
+
+@code {
+    List<Poesia> lista = new List<Poesia>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        lista = await repository.GetPoesiasAsync();
+    }
+}

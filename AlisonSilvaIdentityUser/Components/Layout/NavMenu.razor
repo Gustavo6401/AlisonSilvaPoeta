@@ -76,6 +76,14 @@
                 <a class="nav-link" href="/Depoimentos/Cadastro/@context.User.Identity?.Name">Cadastre seu Depoimento</a>
             </div>
         </AuthorizeView>
+        <div class="nav-item px-3">
+            <a class="nav-link" href="/Poesia">Poesias Diárias</a>
+        </div>
+        <AuthorizeView Roles="Administrador">
+            <div class="nav-item px-3">
+                <a class="nav-link" href="/CadastroPoesia">Cadastrar Poesias</a>
+            </div>
+        </AuthorizeView>
     </nav>
 </div>
 

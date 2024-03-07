@@ -1,6 +1,13 @@
 ﻿@page "/CadastroPoesia"
 
 @using AlisonSilvaIdentityUser.Models.MongoDBCollections.PoesiasDB
+@using AlisonSilvaIdentityUser.Repositories.MongoDBRepositories
+
+@inject PoesiaRepository repository
+@inject IJSRuntime JsRuntime
+@inject NavigationManager Navigation
+
+@rendermode InteractiveServer
 
 @attribute [Authorize(Roles = "Administrador")]
 
@@ -8,17 +15,33 @@
 
 <h3>Poesia Diária</h3>
 
-<EditForm Model="poesia" FormName="CadastrarPoesia">
+<EditForm Model="poesia" FormName="CadastrarPoesia" OnSubmit="CadastrarPoesia">
     <DataAnnotationsValidator />
     <div class="form-group">
         <label for="titulo">Título</label>
         <InputText @bind-Value="poesia.Titulo" class="form-control" />
         <ValidationMessage For="() => poesia.Titulo" />
     </div>
+    <div class="form-group">
+        <label for="texto">Texto</label>
+        <InputTextArea @bind-Value="poesia.Texto" class="form-control" />
+        <ValidationMessage For="() => poesia.Texto" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" type="submit">Publicar Poesia</button>
+    </div>
 </EditForm>
 
 @code {
     Poesia poesia = new Poesia();
 
+    public async Task CadastrarPoesia()
+    {
+        poesia.DataPublicacao = DateTime.Now;
+        await repository.CreateAsync(poesia);
 
+        await JsRuntime.InvokeVoidAsync("alert", "Poesia Publicada com Sucesso!");
+
+        Navigation.NavigateTo("/");
+    }
 }
